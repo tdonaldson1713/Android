@@ -1,4 +1,4 @@
-package com.tylerdonaldson.neonlight;
+package com.donaldson.development.neonlights;
 
 import android.app.Activity;
 import android.os.Bundle;

@@ -5,7 +5,7 @@
  * should not be modified by hand.
  */
 
-package com.tylerdonaldson.neonlight;
+package com.donaldson.development.neonlights;
 
 public final class R {
     public static final class attr {
@@ -408,11 +408,11 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #AdsAttrs_adSize com.tylerdonaldson.neonlight:adSize}</code></td><td>
+           <tr><td><code>{@link #AdsAttrs_adSize com.donaldson.development.neonlights:adSize}</code></td><td>
     The size of the ad.</td></tr>
-           <tr><td><code>{@link #AdsAttrs_adSizes com.tylerdonaldson.neonlight:adSizes}</code></td><td>
+           <tr><td><code>{@link #AdsAttrs_adSizes com.donaldson.development.neonlights:adSizes}</code></td><td>
     A comma-separated list of the supported ad sizes.</td></tr>
-           <tr><td><code>{@link #AdsAttrs_adUnitId com.tylerdonaldson.neonlight:adUnitId}</code></td><td> The ad unit ID.</td></tr>
+           <tr><td><code>{@link #AdsAttrs_adUnitId com.donaldson.development.neonlights:adUnitId}</code></td><td> The ad unit ID.</td></tr>
            </table>
            @see #AdsAttrs_adSize
            @see #AdsAttrs_adSizes
@@ -483,20 +483,20 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #MapAttrs_cameraBearing com.tylerdonaldson.neonlight:cameraBearing}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_cameraTargetLat com.tylerdonaldson.neonlight:cameraTargetLat}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_cameraTargetLng com.tylerdonaldson.neonlight:cameraTargetLng}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_cameraTilt com.tylerdonaldson.neonlight:cameraTilt}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_cameraZoom com.tylerdonaldson.neonlight:cameraZoom}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_mapType com.tylerdonaldson.neonlight:mapType}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_uiCompass com.tylerdonaldson.neonlight:uiCompass}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_uiRotateGestures com.tylerdonaldson.neonlight:uiRotateGestures}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_uiScrollGestures com.tylerdonaldson.neonlight:uiScrollGestures}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_uiTiltGestures com.tylerdonaldson.neonlight:uiTiltGestures}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_uiZoomControls com.tylerdonaldson.neonlight:uiZoomControls}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_uiZoomGestures com.tylerdonaldson.neonlight:uiZoomGestures}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_useViewLifecycle com.tylerdonaldson.neonlight:useViewLifecycle}</code></td><td></td></tr>
-           <tr><td><code>{@link #MapAttrs_zOrderOnTop com.tylerdonaldson.neonlight:zOrderOnTop}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_cameraBearing com.donaldson.development.neonlights:cameraBearing}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_cameraTargetLat com.donaldson.development.neonlights:cameraTargetLat}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_cameraTargetLng com.donaldson.development.neonlights:cameraTargetLng}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_cameraTilt com.donaldson.development.neonlights:cameraTilt}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_cameraZoom com.donaldson.development.neonlights:cameraZoom}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_mapType com.donaldson.development.neonlights:mapType}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_uiCompass com.donaldson.development.neonlights:uiCompass}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_uiRotateGestures com.donaldson.development.neonlights:uiRotateGestures}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_uiScrollGestures com.donaldson.development.neonlights:uiScrollGestures}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_uiTiltGestures com.donaldson.development.neonlights:uiTiltGestures}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_uiZoomControls com.donaldson.development.neonlights:uiZoomControls}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_uiZoomGestures com.donaldson.development.neonlights:uiZoomGestures}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_useViewLifecycle com.donaldson.development.neonlights:useViewLifecycle}</code></td><td></td></tr>
+           <tr><td><code>{@link #MapAttrs_zOrderOnTop com.donaldson.development.neonlights:zOrderOnTop}</code></td><td></td></tr>
            </table>
            @see #MapAttrs_cameraBearing
            @see #MapAttrs_cameraTargetLat
@@ -520,7 +520,7 @@ containing a value of this type.
             0x7f01000f, 0x7f010010
         };
         /**
-          <p>This symbol is the offset where the {@link com.tylerdonaldson.neonlight.R.attr#cameraBearing}
+          <p>This symbol is the offset where the {@link com.donaldson.development.neonlights.R.attr#cameraBearing}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -534,7 +534,7 @@ containing a value of this type.
         */
         public static final int MapAttrs_cameraBearing = 1;
         /**
-          <p>This symbol is the offset where the {@link com.tylerdonaldson.neonlight.R.attr#cameraTargetLat}
+          <p>This symbol is the offset where the {@link com.donaldson.development.neonlights.R.attr#cameraTargetLat}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -548,7 +548,7 @@ containing a value of this type.
         */
         public static final int MapAttrs_cameraTargetLat = 2;
         /**
-          <p>This symbol is the offset where the {@link com.tylerdonaldson.neonlight.R.attr#cameraTargetLng}
+          <p>This symbol is the offset where the {@link com.donaldson.development.neonlights.R.attr#cameraTargetLng}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -562,7 +562,7 @@ containing a value of this type.
         */
         public static final int MapAttrs_cameraTargetLng = 3;
         /**
-          <p>This symbol is the offset where the {@link com.tylerdonaldson.neonlight.R.attr#cameraTilt}
+          <p>This symbol is the offset where the {@link com.donaldson.development.neonlights.R.attr#cameraTilt}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -576,7 +576,7 @@ containing a value of this type.
         */
         public static final int MapAttrs_cameraTilt = 4;
         /**
-          <p>This symbol is the offset where the {@link com.tylerdonaldson.neonlight.R.attr#cameraZoom}
+          <p>This symbol is the offset where the {@link com.donaldson.development.neonlights.R.attr#cameraZoom}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -590,7 +590,7 @@ containing a value of this type.
         */
         public static final int MapAttrs_cameraZoom = 5;
         /**
-          <p>This symbol is the offset where the {@link com.tylerdonaldson.neonlight.R.attr#mapType}
+          <p>This symbol is the offset where the {@link com.donaldson.development.neonlights.R.attr#mapType}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -610,7 +610,7 @@ containing a value of this type.
         */
         public static final int MapAttrs_mapType = 0;
         /**
-          <p>This symbol is the offset where the {@link com.tylerdonaldson.neonlight.R.attr#uiCompass}
+          <p>This symbol is the offset where the {@link com.donaldson.development.neonlights.R.attr#uiCompass}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -624,7 +624,7 @@ containing a value of this type.
         */
         public static final int MapAttrs_uiCompass = 6;
         /**
-          <p>This symbol is the offset where the {@link com.tylerdonaldson.neonlight.R.attr#uiRotateGestures}
+          <p>This symbol is the offset where the {@link com.donaldson.development.neonlights.R.attr#uiRotateGestures}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -638,7 +638,7 @@ containing a value of this type.
         */
         public static final int MapAttrs_uiRotateGestures = 7;
         /**
-          <p>This symbol is the offset where the {@link com.tylerdonaldson.neonlight.R.attr#uiScrollGestures}
+          <p>This symbol is the offset where the {@link com.donaldson.development.neonlights.R.attr#uiScrollGestures}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -652,7 +652,7 @@ containing a value of this type.
         */
         public static final int MapAttrs_uiScrollGestures = 8;
         /**
-          <p>This symbol is the offset where the {@link com.tylerdonaldson.neonlight.R.attr#uiTiltGestures}
+          <p>This symbol is the offset where the {@link com.donaldson.development.neonlights.R.attr#uiTiltGestures}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -666,7 +666,7 @@ containing a value of this type.
         */
         public static final int MapAttrs_uiTiltGestures = 9;
         /**
-          <p>This symbol is the offset where the {@link com.tylerdonaldson.neonlight.R.attr#uiZoomControls}
+          <p>This symbol is the offset where the {@link com.donaldson.development.neonlights.R.attr#uiZoomControls}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -680,7 +680,7 @@ containing a value of this type.
         */
         public static final int MapAttrs_uiZoomControls = 10;
         /**
-          <p>This symbol is the offset where the {@link com.tylerdonaldson.neonlight.R.attr#uiZoomGestures}
+          <p>This symbol is the offset where the {@link com.donaldson.development.neonlights.R.attr#uiZoomGestures}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -694,7 +694,7 @@ containing a value of this type.
         */
         public static final int MapAttrs_uiZoomGestures = 11;
         /**
-          <p>This symbol is the offset where the {@link com.tylerdonaldson.neonlight.R.attr#useViewLifecycle}
+          <p>This symbol is the offset where the {@link com.donaldson.development.neonlights.R.attr#useViewLifecycle}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
@@ -708,7 +708,7 @@ containing a value of this type.
         */
         public static final int MapAttrs_useViewLifecycle = 12;
         /**
-          <p>This symbol is the offset where the {@link com.tylerdonaldson.neonlight.R.attr#zOrderOnTop}
+          <p>This symbol is the offset where the {@link com.donaldson.development.neonlights.R.attr#zOrderOnTop}
           attribute's value can be found in the {@link #MapAttrs} array.
 
 
