@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="semesters">
+        <item>Fall</item>
+        <item>Spring</item>
+        <item>Summer</item>
+        <item>May-mester</item>
+    </string-array>
+    
+    <string-array name="grading_categories">
+        <item>Percentage</item>
+        <item>Point</item>
+    </string-array>
+    
+    <string-array name="grade_types">
+        <item>Homework</item>
+        <item>Project</item>
+        <item>Quiz</item>
+        <item>Exam</item>
+        <item>New Category</item>
+    </string-array>
+</resources>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Neon Lights</string>
+    <string name="action_settings">Settings</string>
+    <string name="noneSelected">No colors selected. Please select one.</string>
+    <string name="screenSizeError">Size of screen cannot be found.</string>
+    <string name="Whitebutton">White Button</string>
+    <string name="Yellowbutton">Yellow Button</string>
+    <string name="Purplebutton">Purple Button</string>
+    <string name="Redbutton">Red Button</string>
+    <string name="Greenbutton">Green Button</string>
+    <string name="Bluebutton">Blue Button</string>
+    <string name="Pinkbutton">Pink Button</string>
+    <string name="Orangebutton">Orange Button</string>
+    <string name="TurnOn">Turn On Button</string>
+    <string name="title_activity_red">Red</string>
+    <string name="title_activity_green">Green</string>
+    <string name="title_activity_blue">Blue</string>
+    <string name="title_activity_white">White</string>
+    <string name="title_activity_purple">Purple</string>
+    <string name="title_activity_pink">Pink</string>
+    <string name="title_activity_orange">Orange</string>
+    <string name="title_activity_yellow">Yellow</string>
+
+</resources>

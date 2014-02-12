@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <LinearLayout
+        android:id="@+id/linearlayouttitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:layout_marginTop="3dp" >
+
+        <TextView
+            android:id="@+id/text_gpa_calculate_class_title"
+            style="@style/TextColor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="@string/class_name"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearlayoutitems"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearlayouttitle"
+        android:layout_marginBottom="7dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:orientation="horizontal" >
+
+        <EditText
+            android:id="@+id/scale_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginRight="3dp"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/hint_credits"
+            android:inputType="number"
+            android:textColor="@android:color/black" />
+
+        <EditText
+            android:id="@+id/gpa_points"
+            android:layout_width="wrap_content"
+            android:layout_marginLeft="3dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:enabled="false"
+            android:gravity="center"
+            android:inputType="number"
+            android:textColor="@android:color/black" >
+        </EditText>
+    </LinearLayout>
+
+</RelativeLayout>

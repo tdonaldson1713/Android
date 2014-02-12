@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/fragmentClassContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_background_port" >
+
+    <ExpandableListView
+        android:id="@+id/expandableListClass"
+        android:layout_width="match_parent"
+        android:layout_height="0dp" 
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp" >
+    </ExpandableListView>
+
+    <!--  android:groupIndicator="@android:drawable/arrow_down_float" -->
+    
+    <ImageButton
+        android:id="@+id/buttonGeneralAdd"
+        android:contentDescription="@string/btnAddDesc"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="15dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:scaleType="centerInside"
+        android:background="@drawable/chalkboard"
+        android:src="@drawable/options_menu"
+         />
+    
+	<!-- android:textSize="20sp"
+	style="@style/TextColor"
+        android:text="@string/addButton"
+        android:visibility="gone" -->
+</RelativeLayout>

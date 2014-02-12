@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_background_large"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/linearlayouttitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/txtGradeTitle"
+            style="@style/TextColor"
+            android:layout_gravity="fill"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.06"
+            android:gravity="center"
+            android:text="@string/grade_overview_title"
+            android:textAppearance="?android:attr/textAppearanceLarge" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearlayoutlinetitle"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_below="@+id/linearlayouttitle"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@android:color/black"
+        android:orientation="horizontal" />
+
+    <LinearLayout
+        android:id="@+id/linearlayoutheadings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/linearlayoutlinetitle"
+        android:layout_marginBottom="5dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/text_overview_category_header"
+            style="@style/TextColor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="2"
+            android:layout_gravity="fill"
+            android:text="@string/grading_category"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/text_overview_overall_header"
+            style="@style/TextColor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.15"
+            android:layout_gravity="fill"
+            android:text="@string/grade_overall"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+        <TextView
+            android:id="@+id/text_overview_percentage_header"
+            style="@style/TextColor"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.25"
+            android:layout_gravity="fill"
+            android:text="@string/grade_percentage"
+            android:textAppearance="?android:attr/textAppearanceSmall" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearlayoutheadingsline"
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/linearlayoutheadings"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:background="@android:color/black"
+        android:orientation="horizontal" />
+
+    <ListView
+        android:id="@+id/listViewGradeOverview"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_below="@+id/linearlayoutheadingsline"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:padding="4dp" >
+    </ListView>
+
+    <LinearLayout
+        android:id="@+id/linearlayoutgradebuttongrid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/listViewGradeOverview"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="3dp"
+        android:orientation="horizontal" >
+
+        <ImageButton
+            android:id="@+id/btn_view_all_grades"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/chalk_background"
+            android:scaleType="centerInside"
+            android:src="@drawable/view_all_grades" />
+
+        <ImageButton
+            android:id="@+id/btn_add_grade"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@drawable/chalk_background"
+            android:scaleType="centerInside"
+            android:src="@drawable/add_grade" />
+
+        <ImageButton
+            android:id="@+id/btn_cancel_grade"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:scaleType="centerInside"
+            android:visibility="gone"
+            android:src="@drawable/cancel_grade" />
+    </LinearLayout>
+
+</RelativeLayout>
