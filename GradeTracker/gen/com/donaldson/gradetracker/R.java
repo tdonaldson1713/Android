@@ -92,8 +92,8 @@ public final class R {
         public static final int view_all_grades=0x7f02003a;
     }
     public static final class id {
-        public static final int arrow_down=0x7f080086;
-        public static final int arrow_up=0x7f080082;
+        public static final int arrow_down=0x7f080087;
+        public static final int arrow_up=0x7f080083;
         public static final int autoCompClassName=0x7f08003c;
         public static final int autoCompFirstName=0x7f080056;
         public static final int autoCompLastName=0x7f080059;
@@ -124,14 +124,14 @@ public final class R {
         public static final int editUsername=0x7f08005d;
         public static final int expandableListClass=0x7f080003;
         public static final int fgc_list_view=0x7f08001e;
-        public static final int footer=0x7f080085;
+        public static final int footer=0x7f080086;
         public static final int fragmentClassContainer=0x7f080002;
         public static final int gpa_list_view=0x7f080024;
-        public static final int gpa_points=0x7f080075;
+        public static final int gpa_points=0x7f080076;
         public static final int gradeSpinner=0x7f08003f;
-        public static final int groupClassNameText=0x7f080077;
-        public static final int groupSemesterText=0x7f080078;
-        public static final int header2=0x7f080081;
+        public static final int groupClassNameText=0x7f080078;
+        public static final int groupSemesterText=0x7f080079;
+        public static final int header2=0x7f080082;
         public static final int i_more=0x7f08006d;
         public static final int imageButton1=0x7f080037;
         public static final int imageButton2=0x7f080038;
@@ -141,7 +141,7 @@ public final class R {
         public static final int imgBtnLogin=0x7f08006c;
         public static final int imgBtnNew=0x7f08006b;
         public static final int imgCancelGrade=0x7f08004e;
-        public static final int imgIndicator=0x7f080076;
+        public static final int imgIndicator=0x7f080077;
         public static final int imgInsertCategory=0x7f080052;
         public static final int imgInsertGrade=0x7f08004d;
         public static final int imgViewGPAHeader=0x7f080005;
@@ -164,7 +164,7 @@ public final class R {
         public static final int linearlayoutgradetype=0x7f080042;
         public static final int linearlayoutheadings=0x7f080029;
         public static final int linearlayoutheadingsline=0x7f08002d;
-        public static final int linearlayoutitems=0x7f080073;
+        public static final int linearlayoutitems=0x7f080074;
         public static final int linearlayoutlastname=0x7f080057;
         public static final int linearlayoutline=0x7f080006;
         public static final int linearlayoutline1=0x7f080021;
@@ -184,39 +184,39 @@ public final class R {
         public static final int listview_classes=0x7f080007;
         public static final int radioStudent=0x7f080069;
         public static final int radioTeacher=0x7f08006a;
-        public static final int radio_fgc=0x7f080071;
+        public static final int radio_fgc=0x7f080072;
         public static final int relativeLayout1=0x7f080064;
-        public static final int relativelayoutbottomrow=0x7f08007c;
-        public static final int relativelayouttoprow=0x7f080079;
-        public static final int scale_value=0x7f080074;
-        public static final int scroll=0x7f080083;
+        public static final int relativelayoutbottomrow=0x7f08007d;
+        public static final int relativelayouttoprow=0x7f08007a;
+        public static final int scale_value=0x7f080075;
+        public static final int scroll=0x7f080084;
         public static final int semesterSpinner=0x7f08003d;
         public static final int spinnerGradeType=0x7f080044;
         public static final int startUpContainer=0x7f08000a;
         public static final int studentFirstName=0x7f080055;
         public static final int studentLastName=0x7f080058;
         public static final int t_name=0x7f08006e;
-        public static final int textCategory=0x7f08007a;
-        public static final int textCategoryPercentage=0x7f08007b;
-        public static final int textEarnedByPossible=0x7f08007e;
+        public static final int textCategory=0x7f08007b;
+        public static final int textCategoryPercentage=0x7f08007c;
+        public static final int textEarnedByPossible=0x7f08007f;
         public static final int textNotScaledGPA=0x7f080014;
-        public static final int textOverallPercentage=0x7f08007d;
+        public static final int textOverallPercentage=0x7f08007e;
         public static final int textScaledGPA=0x7f08000f;
         public static final int textView1=0x7f08000e;
         public static final int textView2=0x7f080012;
         public static final int textView3=0x7f08003e;
-        public static final int text_gpa_calculate_class_title=0x7f080072;
+        public static final int text_gpa_calculate_class_title=0x7f080073;
         public static final int text_overview_category_header=0x7f08002a;
         public static final int text_overview_overall_header=0x7f08002b;
         public static final int text_overview_percentage_header=0x7f08002c;
-        public static final int tracks=0x7f080084;
+        public static final int tracks=0x7f080085;
         public static final int tv_title=0x7f080001;
-        public static final int txtCategoryTitle=0x7f08007f;
+        public static final int txtCategoryTitle=0x7f080080;
         public static final int txtDecision=0x7f080068;
         public static final int txtEmail=0x7f080061;
         public static final int txtFGCPercentageTitle=0x7f080020;
         public static final int txtGradeEarned=0x7f080046;
-        public static final int txtGradeOverall=0x7f080080;
+        public static final int txtGradeOverall=0x7f080081;
         public static final int txtGradePercentage=0x7f08004b;
         public static final int txtGradePossible=0x7f080049;
         public static final int txtGradeTitle=0x7f080027;
@@ -226,6 +226,7 @@ public final class R {
         public static final int txtPhoneNumber=0x7f080066;
         public static final int txtUsername=0x7f08005c;
         public static final int txt_student_grade=0x7f080070;
+        public static final int txt_student_list_grade=0x7f080071;
         public static final int txt_student_name=0x7f08006f;
     }
     public static final class layout {
@@ -248,12 +249,13 @@ public final class R {
         public static final int fragment_start_up=0x7f030010;
         public static final int list=0x7f030011;
         public static final int list_child_view=0x7f030012;
-        public static final int list_fgc_item=0x7f030013;
-        public static final int list_gpa_item=0x7f030014;
-        public static final int list_group_view=0x7f030015;
-        public static final int list_item_grade_activity=0x7f030016;
-        public static final int list_item_grade_overview=0x7f030017;
-        public static final int quickaction=0x7f030018;
+        public static final int list_child_view_student=0x7f030013;
+        public static final int list_fgc_item=0x7f030014;
+        public static final int list_gpa_item=0x7f030015;
+        public static final int list_group_view=0x7f030016;
+        public static final int list_item_grade_activity=0x7f030017;
+        public static final int list_item_grade_overview=0x7f030018;
+        public static final int quickaction=0x7f030019;
     }
     public static final class string {
         public static final int addButton=0x7f060010;

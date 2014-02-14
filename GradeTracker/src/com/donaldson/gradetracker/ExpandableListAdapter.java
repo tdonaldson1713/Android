@@ -162,7 +162,10 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 			}
 
 		} else { // if the user is a student
-			TextView txtUserGrade = new TextView(mClassContext);
+			LayoutInflater inflater = LayoutInflater.from(mClassContext);
+			View viewer = inflater.inflate(R.layout.list_child_view_student, parent, false);
+			
+			TextView txtUserGrade = (TextView) viewer.findViewById(R.id.txt_student_list_grade);
 			txtUserGrade.setOnClickListener(new View.OnClickListener() {
 
 				@Override
@@ -197,7 +200,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 			txtUserGrade = setTextInformation(txtUserGrade, child_padding, 
 					r.getString(R.string.current_grade, grade_string));
 
-			return txtUserGrade;
+			return viewer;
 		}
 	}
 
