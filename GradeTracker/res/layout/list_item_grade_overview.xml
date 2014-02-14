@@ -15,6 +15,7 @@
         android:paddingLeft="5dp"
         android:text="@string/grading_category"
         android:textStyle="bold"
+        android:maxLines="1"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView

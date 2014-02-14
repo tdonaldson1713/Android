@@ -268,6 +268,7 @@ public final class R {
         public static final int database=0x7f060004;
         public static final int desired_message=0x7f060045;
         public static final int earned_grade=0x7f060036;
+        public static final int edit=0x7f06004d;
         public static final int email=0x7f060005;
         public static final int empty_login=0x7f060020;
         public static final int empty_name_string=0x7f060029;

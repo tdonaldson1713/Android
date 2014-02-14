@@ -77,4 +77,5 @@
 	<string name="existing_users">User already exists. Please choose a different name.</string>
 	<string name="valid_characters">Valid characters: A-Z, a-z, 0-9, !_,.#$%@ &amp;</string>
 	<string name="invalid_characters">Username/Password contains invalid characters.</string>
+	<string name="edit">Edit</string>
 </resources>
