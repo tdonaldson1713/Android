@@ -19,6 +19,6 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         ads:adSize="SMART_BANNER"
-        ads:adUnitId="ca-app-pub-5483127906341879/6956791341" />
+        ads:adUnitId="ca-app-pub-5483127906341879/4467546140" />
 
 </RelativeLayout>
