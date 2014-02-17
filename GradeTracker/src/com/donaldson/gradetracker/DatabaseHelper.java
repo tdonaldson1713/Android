@@ -245,6 +245,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	}
 
 	public ClassCursor updateClass(Class newClass) {
+		Log.d("TEST", newClass.getId() + " ID");
+		Log.d("TEST", newClass.getOverallGrade() + " Grade");
 		String[] classInfo = {newClass.getClassName(), newClass.getSemester(), 
 				String.valueOf(newClass.getOverallGrade()),	String.valueOf(newClass.getId())};
 		Cursor cursor = getWritableDatabase().rawQuery(UPDATE_CLASS, classInfo);

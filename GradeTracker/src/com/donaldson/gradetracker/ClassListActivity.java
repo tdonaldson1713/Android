@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,7 +51,7 @@ public class ClassListActivity extends Activity {
 	private ArrayList<Class> classes = new ArrayList<Class>();
 	private ArrayList<Student> students = new ArrayList<Student>();
 	private Class selected_FGC_class = null;
-	private ExpandableListAdapter expListAdapter;
+	private ExpandableListAdapter expListAdapter = null;
 	private ArrayList<Class> gpa_classes = new ArrayList<Class>();
 
 	@Override
@@ -102,8 +103,6 @@ public class ClassListActivity extends Activity {
 					findStudents(classes.get(groupPosition).getId());
 					expandedClass = classes.get(groupPosition);
 				}
-				/*setButtonText(getString(R.string.addButton, getString(R.string.student), 
-						classes.get(groupPosition).getClassName()));*/
 			}
 		});
 
@@ -112,8 +111,6 @@ public class ClassListActivity extends Activity {
 			public void onGroupCollapse(int groupPosition) {
 				addClass = true;
 				students.clear();
-				/*setButtonText(getString(R.string.addButton, getString(R.string.class_val),
-						getString(R.string.database)));*/
 			}
 		});
 
@@ -205,7 +202,7 @@ public class ClassListActivity extends Activity {
 
 		final ListView list_classes = (ListView) dialogView.findViewById(R.id.gpa_list_view);
 		final ArrayList<String> class_names = new ArrayList<String>();
-		
+
 		for (int a = 0; a < classes.size(); a++) {
 			class_names.add(classes.get(a).getClassName());
 		}
@@ -223,20 +220,19 @@ public class ClassListActivity extends Activity {
 			public void onClick(View v) {
 				gpa_classes.clear();
 				SparseBooleanArray checkedItems = list_classes.getCheckedItemPositions();
-				
+
 				for (int i=0; i<checkedItems.size(); i++) {
-			        if (checkedItems.valueAt(i)) {
-			        	// String item = list_classes.getAdapter().getItem(checkedItems.keyAt(i)).toString(); // Get the name
-			            int position = (int) list_classes.getAdapter().getItemId(checkedItems.keyAt(i)); // Get the position in the adapter
-			            gpa_classes.add(classes.get(position));
-			        }
-			    }
-				
+					if (checkedItems.valueAt(i)) {
+						int position = (int) list_classes.getAdapter().getItemId(checkedItems.keyAt(i)); // Get the position in the adapter
+						gpa_classes.add(classes.get(position));
+					}
+				}
+
 				ArrayList classes = new ArrayList();
 				for (int a = 0; a < gpa_classes.size(); a++) {
 					classes.add(new Class(gpa_classes.get(a)));
 				}
-				
+
 				dialog.dismiss();
 				Intent i = new Intent(getApplicationContext(), GPACalculatorActivity.class);
 				i.putParcelableArrayListExtra(GPACalculatorActivity.ARGS_LIST_CLASSES, classes);
@@ -369,6 +365,20 @@ public class ClassListActivity extends Activity {
 		});
 	}
 
+	@Override
+	public void onResume() {
+		super.onResume();
+		classes.clear();
+		setUpClasses();
+		
+		expListAdapter.insertAllClasses(classes);
+		expListAdapter.notifyDataSetChanged();
+		
+		for (int a = 0; a < classExpandList.getAdapter().getCount(); a++) {
+			classExpandList.collapseGroup(a);
+		}
+	}
+
 	private ArrayList<Grade> getGradesFromCursor() {
 		ArrayList<Grade> grades = new ArrayList<Grade>();
 		GradeCursor cursor = GradeLab.get(getApplicationContext()).getGrades(selected_FGC_class.getId(),
@@ -470,7 +480,6 @@ public class ClassListActivity extends Activity {
 	private void initialLoad() {
 		scaleExpandableListView();
 		scaleAddButton();
-		//setButtonText(getString(R.string.addButton, getString(R.string.class_val), getString(R.string.database)));
 	}
 
 	/* 

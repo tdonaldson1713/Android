@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.util.ArrayList;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -18,9 +19,10 @@ class PercentageGradeListArrayAdapter extends ArrayAdapter<String> {
 	private boolean isTeacher;
 	private long class_id = -1;
 	private long student_id = -1;
-
+	private AlertDialog dialog;
+	
 	public PercentageGradeListArrayAdapter(Context context, int resource,
-			ArrayList<String> objects, boolean teacher, long classId, long studentId) {
+			ArrayList<String> objects, boolean teacher, long classId, long studentId, AlertDialog d) {
 		super(context, resource, objects);
 
 		this.context = context;
@@ -28,6 +30,7 @@ class PercentageGradeListArrayAdapter extends ArrayAdapter<String> {
 		isTeacher = teacher;
 		class_id = classId;
 		student_id = studentId;
+		dialog = d;
 	}
 
 	@Override
@@ -54,6 +57,7 @@ class PercentageGradeListArrayAdapter extends ArrayAdapter<String> {
 
 				@Override
 				public void onClick(View v) {
+					dialog.dismiss();
 					if (isTeacher) {
 						Intent i = new Intent(context, GradeBreakdownActivity.class);
 						i.putExtra(GradeBreakdownActivity.ARGS_CLASS_ID, class_id);

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import org.apache.http.ParseException;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -12,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class PointGradeListArrayAdapter extends ArrayAdapter<String> {
 	private Context context;
@@ -20,15 +20,17 @@ public class PointGradeListArrayAdapter extends ArrayAdapter<String> {
 	private boolean isTeacher;
 	private long class_id = -1;
 	private long student_id = -1;
-
+	private AlertDialog dialog;
+	
 	public PointGradeListArrayAdapter(Context context, int resource,
-			ArrayList<String> objects, boolean teacher, long classId, long studentId) {
+			ArrayList<String> objects, boolean teacher, long classId, long studentId, AlertDialog d) {
 		super(context, resource, objects);
 		this.context = context;
 		categories.addAll(objects);
 		isTeacher = teacher;
 		class_id = classId;
 		student_id = studentId;
+		dialog = d;
 	}
 
 	@Override
@@ -52,6 +54,7 @@ public class PointGradeListArrayAdapter extends ArrayAdapter<String> {
 
 				@Override
 				public void onClick(View v) {
+					dialog.dismiss();
 					if (isTeacher) {
 						Intent i = new Intent(context, GradeBreakdownActivity.class);
 						i.putExtra(GradeBreakdownActivity.ARGS_CLASS_ID, class_id);

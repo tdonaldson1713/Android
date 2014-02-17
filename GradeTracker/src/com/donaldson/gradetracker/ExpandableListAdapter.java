@@ -8,6 +8,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -90,6 +91,14 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		}
 
 		this.students.addAll(student);
+	}
+	
+	public void insertAllClasses(ArrayList<Class> classes) {
+		if (this.classes.size() > 0) {
+			this.classes.clear();
+		}
+		
+		this.classes.addAll(classes);
 	}
 
 	@Override
@@ -188,6 +197,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 					resetIncrementedValues();
 				}
 			});
+			
+			Log.d("TEST", classes.get(groupPosition).getOverallGrade() + "");
 
 			double grade = classes.get(groupPosition).getOverallGrade();
 			String grade_string = "";
@@ -322,11 +333,11 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
 		if (isPercentage) {
 			PercentageGradeListArrayAdapter adapter = new PercentageGradeListArrayAdapter(mClassContext, 
-					R.layout.list_item_grade_overview, categories, isTeacher, class_id, student_id);
+					R.layout.list_item_grade_overview, categories, isTeacher, class_id, student_id, dialog);
 			listGrades.setAdapter(adapter);
 		} else {
 			PointGradeListArrayAdapter adapter = new PointGradeListArrayAdapter(mClassContext, 
-					R.layout.list_item_grade_overview, categories, isTeacher, class_id, student_id);
+					R.layout.list_item_grade_overview, categories, isTeacher, class_id, student_id, dialog);
 			listGrades.setAdapter(adapter);
 		}
 
@@ -358,9 +369,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				dialog.cancel();
 				if (isTeacher) {
+					dialog.cancel();
 					Intent i = new Intent(mClassContext, GradeBreakdownActivity.class);
 					i.putExtra(GradeBreakdownActivity.ARGS_CLASS_ID, class_id);
 					i.putExtra(GradeBreakdownActivity.ARGS_ALL_GRADES, true);
@@ -368,6 +378,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 					i.putExtra(GradeBreakdownActivity.ARGS_STUDENT_ID, student_id);
 					mClassContext.startActivity(i);
 				} else {
+					dialog.cancel();
 					Intent i = new Intent(mClassContext, GradeBreakdownActivity.class);
 					i.putExtra(GradeBreakdownActivity.ARGS_CLASS_ID, class_id);
 					i.putExtra(GradeBreakdownActivity.ARGS_ALL_GRADES, true);
@@ -626,7 +637,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
 				@Override
 				public void onNothingSelected(AdapterView<?> arg0) {
-					// TODO Auto-generated method stub
 
 				}
 			});

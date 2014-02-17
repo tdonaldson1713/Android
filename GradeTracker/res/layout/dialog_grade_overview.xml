@@ -18,9 +18,9 @@
         <TextView
             android:id="@+id/txtGradeTitle"
             style="@style/TextColor"
-            android:layout_gravity="fill"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="fill"
             android:layout_weight="0.06"
             android:gravity="center"
             android:text="@string/grade_overview_title"
@@ -53,8 +53,9 @@
             style="@style/TextColor"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="2"
             android:layout_gravity="fill"
+            android:layout_weight="2"
+            android:maxLines="1"
             android:text="@string/grading_category"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -63,8 +64,9 @@
             style="@style/TextColor"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1.15"
             android:layout_gravity="fill"
+            android:layout_weight="1.15"
+            android:maxLines="1"
             android:text="@string/grade_overall"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
@@ -73,8 +75,9 @@
             style="@style/TextColor"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1.25"
             android:layout_gravity="fill"
+            android:layout_weight="1.25"
+            android:maxLines="1"
             android:text="@string/grade_percentage"
             android:textAppearance="?android:attr/textAppearanceSmall" />
     </LinearLayout>
@@ -136,8 +139,8 @@
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:scaleType="centerInside"
-            android:visibility="gone"
-            android:src="@drawable/cancel_grade" />
+            android:src="@drawable/cancel_grade"
+            android:visibility="gone" />
     </LinearLayout>
 
 </RelativeLayout>
