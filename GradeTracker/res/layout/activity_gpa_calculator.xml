@@ -35,7 +35,8 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:divider="@android:color/black"
-        android:dividerHeight="2dp" >
+        android:dividerHeight="2dp"
+        android:background="@drawable/border_black" >
     </ListView>
 
     <ImageButton
@@ -45,11 +46,43 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:layout_below="@+id/listview_classes"
+        android:layout_below="@+id/linearlayout_scale_type"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:layout_marginBottom="5dp"
         android:background="@android:color/transparent"
         android:src="@drawable/calculate" />
+
+    <LinearLayout
+        android:id="@+id/linearlayout_scale_type"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
+        android:layout_alignLeft="@+id/listview_classes"
+        android:layout_alignRight="@+id/listview_classes"
+        android:layout_below="@+id/listview_classes"
+        android:background="@drawable/border_black" >
+
+        <RadioButton
+            android:id="@+id/rbWhole"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/rbWhole" />
+
+        <RadioButton
+            android:id="@+id/rbPlus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/rbPlus" />
+
+        <RadioButton
+            android:id="@+id/rbPlusMinus"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/rbPlusMinus" />
+    </LinearLayout>
 
 </RelativeLayout>

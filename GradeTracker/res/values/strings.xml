@@ -78,4 +78,8 @@
 	<string name="valid_characters">Valid characters: A-Z, a-z, 0-9, !_,.#$%@ &amp;</string>
 	<string name="invalid_characters">Username/Password contains invalid characters.</string>
 	<string name="edit">Edit</string>
+	<string name="rbWhole">A|B</string>
+	<string name="rbPlus">A|B+</string>
+	<string name="rbPlusMinus">A|A-|B+</string>
+	<string name="rb_scale_type_warning">Must select a grade scale type.</string>
 </resources>

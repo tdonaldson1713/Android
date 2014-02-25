@@ -38,7 +38,8 @@
         android:layout_alignParentLeft="true"
         android:divider="@android:color/black"
         android:dividerHeight="1dp"
-        android:layout_below="@+id/linearlayoutline1" >
+        android:layout_below="@+id/linearlayoutline1"
+        android:background="@drawable/border_white" >
     </ListView>
     
     <ImageButton

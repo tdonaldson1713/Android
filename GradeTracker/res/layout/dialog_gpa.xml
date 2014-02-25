@@ -17,17 +17,6 @@
         android:layout_marginLeft="15dp"
         android:src="@drawable/gpa_header" />
 
-    <LinearLayout
-        android:id="@+id/linearlayoutline"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_below="@+id/imageView1"
-        android:background="@android:color/black"
-        android:orientation="horizontal"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginBottom="3dp" />
-
     <ListView
         android:id="@+id/gpa_list_view"
         android:layout_width="match_parent"
@@ -37,7 +26,8 @@
         android:layout_marginBottom="3dp"
         android:layout_alignParentLeft="true"
         android:choiceMode="multipleChoice"
-        android:layout_below="@+id/linearlayoutline" >
+        android:layout_below="@+id/imageView1"
+        android:background="@drawable/border_white" >
     </ListView>
 
     <ImageButton

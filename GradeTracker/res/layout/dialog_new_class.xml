@@ -25,113 +25,90 @@
             android:src="@drawable/new_class" />
 
         <LinearLayout
-            android:id="@+id/linearlayoutline"
+            android:id="@+id/linearlayoutinputs"
             android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/imageView1"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-            android:background="@android:color/black"
-            android:orientation="horizontal" />
+            android:background="@drawable/border_white"
+            android:orientation="vertical" >
 
-        <LinearLayout
-            android:id="@+id/linearlayoutclass"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/linearlayoutline"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="3dp" >
+            <LinearLayout
+                android:id="@+id/linearlayoutclass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" 
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp" >
 
-            <TextView
-                android:id="@+id/classNameText"
-                style="@style/TextColor"
-                android:layout_width="0dp"
+                <TextView
+                    android:id="@+id/classNameText"
+                    style="@style/TextColor"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill"
+                    android:layout_weight="1"
+                    android:text="@string/class_name"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <AutoCompleteTextView
+                    android:id="@+id/autoCompClassName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="fill"
-                android:layout_weight="1"
-                android:text="@string/class_name"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp" >
 
-            <AutoCompleteTextView
-                android:id="@+id/autoCompClassName"
-                android:layout_width="0dp"
+                <TextView
+                    android:id="@+id/textView2"
+                    style="@style/TextColor"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill"
+                    android:layout_weight="1"
+                    android:text="@string/semester"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <Spinner
+                    android:id="@+id/semesterSpinner"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10" />
-        </LinearLayout>
+                android:layout_marginLeft="2dp"
+                android:layout_marginRight="2dp" 
+                android:layout_marginBottom="5dp">
 
-        <LinearLayout
-            android:id="@+id/linearLayout1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/linearlayoutclass"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="6dp" >
+                <TextView
+                    android:id="@+id/textView3"
+                    style="@style/TextColor"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="fill"
+                    android:layout_weight="1"
+                    android:text="@string/grading_category"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
 
-            <TextView
-                android:id="@+id/textView2"
-                style="@style/TextColor"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="fill"
-                android:layout_weight="1"
-                android:text="@string/semester"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <Spinner
-                android:id="@+id/semesterSpinner"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/linearLayout1"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="6dp" >
-
-            <TextView
-                android:id="@+id/textView3"
-                style="@style/TextColor"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="fill"
-                android:layout_weight="1"
-                android:text="@string/grading_category"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <Spinner
-                android:id="@+id/gradeSpinner"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:entries="@array/grading_categories" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearlayoutline2"
-            android:layout_width="wrap_content"
-            android:layout_height="2dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/linearLayout2"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="6dp"
-            android:background="@android:color/black"
-            android:orientation="horizontal" >
+                <Spinner
+                    android:id="@+id/gradeSpinner"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:entries="@array/grading_categories" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
@@ -139,7 +116,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/linearlayoutline2"
+            android:layout_below="@+id/linearlayoutinputs"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp" >
 

@@ -26,27 +26,18 @@
             android:text="@string/grade_overview_title"
             android:textAppearance="?android:attr/textAppearanceLarge" />
     </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/linearlayoutlinetitle"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_below="@+id/linearlayouttitle"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:background="@android:color/black"
-        android:orientation="horizontal" />
-
+    
     <LinearLayout
         android:id="@+id/linearlayoutheadings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/linearlayoutlinetitle"
+        android:layout_below="@+id/linearlayouttitle"
         android:layout_marginBottom="5dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="5dp"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:background="@drawable/border_white" >
 
         <TextView
             android:id="@+id/text_overview_category_header"
@@ -82,24 +73,15 @@
             android:textAppearance="?android:attr/textAppearanceSmall" />
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/linearlayoutheadingsline"
-        android:layout_width="match_parent"
-        android:layout_height="2dp"
-        android:layout_below="@+id/linearlayoutheadings"
-        android:layout_marginLeft="15dp"
-        android:layout_marginRight="15dp"
-        android:background="@android:color/black"
-        android:orientation="horizontal" />
-
     <ListView
         android:id="@+id/listViewGradeOverview"
         android:layout_width="wrap_content"
         android:layout_height="200dp"
-        android:layout_below="@+id/linearlayoutheadingsline"
+        android:layout_below="@+id/linearlayoutheadings"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:padding="4dp" >
+        android:padding="4dp"
+        android:background="@drawable/border_white" >
     </ListView>
 
     <LinearLayout

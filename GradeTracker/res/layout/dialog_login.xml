@@ -13,60 +13,70 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="3dp"
         android:layout_marginRight="3dp"
-        android:layout_marginTop="22dp" >
+        android:layout_marginTop="45dp" >
 
         <LinearLayout
-            android:id="@+id/linearLayout2"
-            android:layout_width="wrap_content"
+            android:id="@+id/linearlayoutinputs"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/linearLayout1"
+            android:layout_below="@+id/imageView1"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-            android:layout_marginTop="10dp" >
+            android:orientation="vertical"
+            android:background="@drawable/border_white" >
 
-            <EditText
-                android:id="@+id/editLoginPassword"
+            <LinearLayout
+                android:id="@+id/linearLayout1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
-                android:hint="@string/enter_password"
-                android:inputType="textAutoComplete|textAutoCorrect|textPassword"
-                android:textStyle="italic" />
+                android:layout_marginTop="5dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp" >
+
+                <EditText
+                    android:id="@+id/editLoginUsername"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="@string/enter_username"
+                    android:inputType="textAutoComplete|textAutoCorrect"
+                    android:textStyle="italic" >
+
+                    <requestFocus />
+                </EditText>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearLayout2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" 
+                android:layout_marginTop="15dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginBottom="3dp">
+
+                <EditText
+                    android:id="@+id/editLoginPassword"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:hint="@string/enter_password"
+                    android:inputType="textAutoComplete|textAutoCorrect|textPassword"
+                    android:textStyle="italic" />
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearLayout1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
+            android:layout_below="@+id/linearlayoutinputs"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-            android:layout_marginTop="104dp" >
-
-            <EditText
-                android:id="@+id/editLoginUsername"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:ems="10"
-                android:hint="@string/enter_username"
-                android:inputType="textAutoComplete|textAutoCorrect"
-                android:textStyle="italic" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/linearLayout2"
-            android:layout_marginTop="25dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp" >
+            android:layout_marginTop="25dp" >
 
             <ImageButton
                 android:id="@+id/imageButton1"
@@ -74,16 +84,16 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/chalk_background"
-                android:src="@drawable/login"/>
+                android:src="@drawable/login" />
 
             <ImageButton
                 android:id="@+id/imageButton2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:visibility="gone"
                 android:background="@android:color/transparent"
-                android:src="@drawable/cancel" />
+                android:src="@drawable/cancel"
+                android:visibility="gone" />
         </LinearLayout>
 
         <ImageView

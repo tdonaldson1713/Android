@@ -15,7 +15,8 @@ public class ListViewAllCategoriesAdapter extends ArrayAdapter<Grade> {
 	private ArrayList<String> gradeCategories;
 	private Context mContext;
 	private boolean isPercentage;
-
+	private DecimalFormat df = new DecimalFormat("0.00");
+	
 	public ListViewAllCategoriesAdapter(Context context, int resource,
 			ArrayList<Grade> objects, boolean percentage) {
 		super(context, resource, objects);
@@ -39,7 +40,7 @@ public class ListViewAllCategoriesAdapter extends ArrayAdapter<Grade> {
 
 		txtCategoryTitle.setText(grades.get(position).getGradeCategory());
 		txtIndividualGrade.setText(grades.get(position).getEarnedGrade() + " / " + grades.get(position).getPossibleGrade());
-		txtCategoryGrade.setText("Category : " + (grades.get(position).getPercentage() * 100) + "%");
+		txtCategoryGrade.setText("Category : " + df.format((grades.get(position).getPercentage()) * 100) + "%");
 
 		String category;
 		double overall = 0;
@@ -86,8 +87,6 @@ public class ListViewAllCategoriesAdapter extends ArrayAdapter<Grade> {
 			
 			txtCategoryGrade.setText(earned + " / " + possible);
 		}
-		
-		DecimalFormat df = new DecimalFormat("0.00");
 
 		if (isPercentage) {
 			overall = Double.valueOf(df.format((overall / overallPercentage) * 100));

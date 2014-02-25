@@ -197,8 +197,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 					resetIncrementedValues();
 				}
 			});
-			
-			Log.d("TEST", classes.get(groupPosition).getOverallGrade() + "");
 
 			double grade = classes.get(groupPosition).getOverallGrade();
 			String grade_string = "";
@@ -476,7 +474,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	}
 
 	private void formatOverallGrade() {
-		DecimalFormat df = new DecimalFormat("0.000");
+		DecimalFormat df = new DecimalFormat("0.00");
 		overall = Double.valueOf(df.format(overall));
 	}
 
@@ -573,7 +571,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		final EditText grade_percentage = (EditText) add_grade.findViewById(R.id.editGradePercentage);		
 
 		/*
-		 * Since I'm loading from the classlistactivity context, I have to change the typeface of the 
+		 * Since I'm loading from the classListActivity context, I have to change the typeface of the 
 		 * edit texts manually.
 		 */
 		grade_earned.setTextAppearance(mClassContext, R.style.DialogTextColor);
@@ -675,7 +673,6 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
 				// Time to put this grade into the database.
 				if (earned >= 0.0 && possible > 0.0 && (percentage > 0.0 && percentage < 1.0)) {
-					//Toast.makeText(mClassContext, "You thought I was going to work, didn't you?", Toast.LENGTH_SHORT).show();
 					Grade newGrade = new Grade();
 
 					newGrade.setEarnedGrade(earned);

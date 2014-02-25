@@ -29,7 +29,7 @@ public class ClassListFGCArrayAdapter extends ArrayAdapter<Class> {
 		View v = inflater.inflate(R.layout.list_fgc_item, parent, false);
 		
 		RadioButton rbutton = (RadioButton) v.findViewById(R.id.radio_fgc);
-		rbutton.setText(classes.get(position).getClassName());
+		rbutton.setText(classes.get(position).getClassName() + " - " + classes.get(position).getOverallGrade() + "%");
 
 		return v;
 	}

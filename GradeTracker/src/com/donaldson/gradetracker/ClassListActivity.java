@@ -249,7 +249,7 @@ public class ClassListActivity extends Activity {
 		final ArrayList<String> class_names = new ArrayList<String>();
 
 		for (int a = 0; a < classes.size(); a++) {
-			class_names.add(classes.get(a).getClassName());
+			class_names.add(classes.get(a).getClassName() + " - " + classes.get(a).getOverallGrade() + "%");
 		}
 
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_single_choice, class_names);

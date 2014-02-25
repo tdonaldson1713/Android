@@ -245,8 +245,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 	}
 
 	public ClassCursor updateClass(Class newClass) {
-		Log.d("TEST", newClass.getId() + " ID");
-		Log.d("TEST", newClass.getOverallGrade() + " Grade");
 		String[] classInfo = {newClass.getClassName(), newClass.getSemester(), 
 				String.valueOf(newClass.getOverallGrade()),	String.valueOf(newClass.getId())};
 		Cursor cursor = getWritableDatabase().rawQuery(UPDATE_CLASS, classInfo);
@@ -406,6 +404,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 			" SET " + 
 			COLUMN_GRADE_EARNED + " = ?, " +
 			COLUMN_POSSILBE_GRADE + " = ?, " + 
+			COLUMN_PERCENTAGE + " = ?, " +
 			COLUMN_GRADE_CATEGORY + " = ? " +
 			"WHERE _id = ?";
 	private static final String DELETE_GRADE = "DELETE FROM " + TABLE_GRADE +
@@ -467,8 +466,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 	public GradeCursor updateGrade(Grade newGrade) {
 		String[] gradeInfo = {String.valueOf(newGrade.getEarnedGrade()), 
-				String.valueOf(newGrade.getPossibleGrade()), newGrade.getGradeCategory(), 
-				String.valueOf(newGrade.getId())};
+				String.valueOf(newGrade.getPossibleGrade()), String.valueOf(newGrade.getPercentage()), 
+				newGrade.getGradeCategory(), String.valueOf(newGrade.getId())};
 		Cursor cursor = getWritableDatabase().rawQuery(UPDATE_GRADE, gradeInfo);
 		return new GradeCursor(cursor);
 	}

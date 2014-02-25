@@ -25,166 +25,146 @@
             android:src="@drawable/new_grade" />
 
         <LinearLayout
-            android:id="@+id/linearlayoutline1"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
+            android:id="@+id/linearlayoutinputs"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/imageView1"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-            android:background="@android:color/black"
-            android:orientation="horizontal" />
+            android:background="@drawable/border_white"
+            android:orientation="vertical" >
 
-        <LinearLayout
-            android:id="@+id/linearlayoutgradetype"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/linearlayoutline1"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:id="@+id/txtGradeType"
-                style="@style/TextColor"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:id="@+id/linearlayoutgradetype"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="fill"
-                android:layout_weight="1.25"
-                android:paddingTop="10dp"
-                android:text="@string/grade_type"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:width="0dp" />
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="5dp"
+                android:orientation="horizontal" >
 
-            <Spinner
-                android:id="@+id/spinnerGradeType"
-                android:layout_width="0dp"
+                <TextView
+                    android:id="@+id/txtGradeType"
+                    style="@style/TextColor"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill"
+                    android:layout_weight="1.25"
+                    android:paddingTop="10dp"
+                    android:text="@string/grade_type"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:width="0dp" />
+
+                <Spinner
+                    android:id="@+id/spinnerGradeType"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:entries="@array/grade_types" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearlayoutgradeearned"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1.5"
-                android:entries="@array/grade_types" />
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="3dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/txtGradeEarned"
+                    style="@style/TextColor"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill"
+                    android:layout_weight="1.25"
+                    android:text="@string/earned_grade"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:width="0dp" />
+
+                <EditText
+                    android:id="@+id/editGradeEarned"
+                    style="@style/TextColor"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:ems="10"
+                    android:hint="@string/grade_zero"
+                    android:inputType="numberDecimal" >
+
+                    <requestFocus />
+                </EditText>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearlayoutgradepossible"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="3dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/txtGradePossible"
+                    style="@style/TextColor"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill"
+                    android:layout_weight="1.25"
+                    android:text="@string/possible_grade"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <EditText
+                    android:id="@+id/editGradePossible"
+                    style="@style/TextColor"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:ems="10"
+                    android:hint="@string/grade_zero"
+                    android:inputType="numberDecimal" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linearlayoutgradepercentage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="3dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:layout_marginTop="3dp"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/txtGradePercentage"
+                    style="@style/TextColor"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill"
+                    android:layout_weight="1.25"
+                    android:text="@string/percent_grade"
+                    android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                <EditText
+                    android:id="@+id/editGradePercentage"
+                    style="@style/TextColor"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1.5"
+                    android:ems="10"
+                    android:hint="@string/grade_zero"
+                    android:inputType="numberDecimal" />
+            </LinearLayout>
         </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearlayoutgradeearned"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/linearlayoutgradetype"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="3dp"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:id="@+id/txtGradeEarned"
-                style="@style/TextColor"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="fill"
-                android:layout_weight="1.25"
-                android:text="@string/earned_grade"
-                android:textAppearance="?android:attr/textAppearanceMedium"
-                android:width="0dp" />
-
-            <EditText
-                android:id="@+id/editGradeEarned"
-                style="@style/TextColor"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.5"
-                android:ems="10"
-                android:hint="@string/grade_zero"
-                android:inputType="numberDecimal" >
-            </EditText>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearlayoutgradepossible"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/linearlayoutgradeearned"
-            android:layout_gravity="fill"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="3dp"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:id="@+id/txtGradePossible"
-                style="@style/TextColor"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="fill"
-                android:layout_weight="1.25"
-                android:text="@string/possible_grade"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <EditText
-                android:id="@+id/editGradePossible"
-                style="@style/TextColor"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.5"
-                android:ems="10"
-                android:hint="@string/grade_zero"
-                android:inputType="numberDecimal" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearlayoutgradepercentage"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/linearlayoutgradepossible"
-            android:layout_marginBottom="3dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:layout_marginTop="3dp"
-            android:orientation="horizontal" >
-
-            <TextView
-                android:id="@+id/txtGradePercentage"
-                style="@style/TextColor"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_gravity="fill"
-                android:layout_weight="1.25"
-                android:text="@string/percent_grade"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
-
-            <EditText
-                android:id="@+id/editGradePercentage"
-                style="@style/TextColor"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1.5"
-                android:ems="10"
-                android:hint="@string/grade_zero"
-                android:inputType="numberDecimal" >
-            </EditText>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearlayoutline2"
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:layout_below="@+id/linearlayoutgradepercentage"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
-            android:background="@android:color/black"
-            android:orientation="horizontal" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_alignParentRight="true"
-            android:layout_below="@+id/linearlayoutline2"
+            android:layout_below="@+id/linearlayoutinputs"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
             android:layout_marginTop="5dp" >

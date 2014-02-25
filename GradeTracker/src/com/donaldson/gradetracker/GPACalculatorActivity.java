@@ -10,10 +10,13 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class GPACalculatorActivity extends Activity {
 	public static final String ARGS_LIST_CLASSES = "classes";
@@ -21,47 +24,105 @@ public class GPACalculatorActivity extends Activity {
 	public ImageButton imgBtnCalculate;
 	public ImageView imgHeader;
 	public ListView list_classes;
+	public RadioButton rbWhole;
+	public RadioButton rbPlus;
+	public RadioButton rbPlusMinus;
+
 	private double scaled_gpa = 0;
 	private double non_scaled_gpa = 0;
 	private double points = 0;
 	private double final_points = 0;
 	private int num_credits = 0;
 	public ArrayList<Class> classes = new ArrayList<Class>();
-	
+
 	@Override public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_gpa_calculator);
-		
+
 		list_classes = (ListView) findViewById(R.id.listview_classes);		 
 		imgHeader = (ImageView) findViewById(R.id.imgViewGPAHeader);
 		imgBtnCalculate = (ImageButton) findViewById(R.id.calculate_gpa_final);
-		
+
+		rbWhole = (RadioButton) findViewById(R.id.rbWhole);
+		rbWhole.setChecked(true);
+		rbPlus = (RadioButton) findViewById(R.id.rbPlus);
+		rbPlusMinus = (RadioButton) findViewById(R.id.rbPlusMinus);
+
 		initialLoad();
-		
-		final GPAClassesArrayAdapter adapter = new GPAClassesArrayAdapter(this, R.id.listview_classes, classes);
+
+		final GPAClassesArrayAdapter adapter = new GPAClassesArrayAdapter(this, R.id.listview_classes, classes, 0);
 		list_classes.setAdapter(adapter);
-		
+
 		final DecimalFormat df = new DecimalFormat("0.00");
-		
+
 		if (classes.size() == 0) {
 			imgBtnCalculate.setEnabled(false);
 		}
-		
-		imgBtnCalculate.setOnClickListener(new View.OnClickListener() {
-			
+
+		rbWhole.setOnClickListener(new View.OnClickListener() {
+
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
+				if (rbPlus.isChecked() || rbPlusMinus.isChecked()) {
+					rbPlus.setChecked(false);
+					rbPlusMinus.setChecked(false);
+				}
+
+				rbWhole.setChecked(true);
+				adapter.setScaleType(0);
 				adapter.notifyDataSetChanged();
-				getPoints();
-				scaled_gpa = Double.valueOf(df.format(CalculateGrades.calculate_scaled_gpa(final_points, num_credits)));
-				non_scaled_gpa = Double.valueOf(df.format(CalculateGrades.calculate_non_scaled_gpa(points, classes.size())));
-				createGPADialog();
-				resetValues();
+			}
+
+		});
+
+		rbPlus.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if (rbWhole.isChecked() || rbPlusMinus.isChecked()) {
+					rbWhole.setChecked(false);
+					rbPlusMinus.setChecked(false);
+				}
+
+				rbPlus.setChecked(true);
+				adapter.setScaleType(1);
+				adapter.notifyDataSetChanged();
+			}
+		});
+
+		rbPlusMinus.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if (rbWhole.isChecked() || rbPlus.isChecked()) {
+					rbPlus.setChecked(false);
+					rbWhole.setChecked(false);
+				}
+
+				rbPlusMinus.setChecked(true);
+				adapter.setScaleType(2);
+				adapter.notifyDataSetChanged();
+			}
+		});
+
+		imgBtnCalculate.setOnClickListener(new View.OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if (rbWhole.isChecked() || rbPlus.isChecked() || rbPlusMinus.isChecked()) {
+					adapter.notifyDataSetChanged();
+					getPoints();
+					scaled_gpa = Double.valueOf(df.format(CalculateGrades.calculate_scaled_gpa(final_points, num_credits)));
+					non_scaled_gpa = Double.valueOf(df.format(CalculateGrades.calculate_non_scaled_gpa(points, classes.size())));
+					createGPADialog();
+					resetValues();
+				} else {
+					Toast.makeText(getApplicationContext(), R.string.rb_scale_type_warning, Toast.LENGTH_SHORT).show();
+				}
 			}
 		});
 	}
-	
+
 	private void resetValues() {
 		points = 0; 
 		num_credits = 0;
@@ -70,17 +131,17 @@ public class GPACalculatorActivity extends Activity {
 
 	private void getPoints() {
 		double p, c;
-		
+
 		for (int a = 0; a < classes.size(); a++) {
 			p = classes.get(a).getGPAScale();
 			c = classes.get(a).getCredits();
-			
+
 			points += p;
 			num_credits += c;
 			final_points += (p * c);
 		}
 	}
-	
+
 	private void createGPADialog() {
 		LayoutInflater inflater = LayoutInflater.from(this);
 		View dialogView = inflater.inflate(R.layout.dialog_calculated_gpa, null);
@@ -88,24 +149,24 @@ public class GPACalculatorActivity extends Activity {
 		final AlertDialog dialog = builder.create();
 		dialog.setView(dialogView, 0, 0, 0, 0);
 		dialog.show();
-		
+
 		ImageButton btnCancel = (ImageButton) dialogView.findViewById(R.id.cancel_gpa_calculated);
 		btnCancel.setOnClickListener(new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				dialog.dismiss();
 			}
 		});
-		
+
 		TextView txtScaled = (TextView) dialogView.findViewById(R.id.textScaledGPA);
 		TextView txtNotScaled = (TextView) dialogView.findViewById(R.id.textNotScaledGPA);
-		
+
 		txtScaled.setText(String.valueOf(scaled_gpa));
 		txtNotScaled.setText(String.valueOf(non_scaled_gpa));
 	}
-	
+
 	private void getClasses(ArrayList c) {
 		for (int a = 0; a < c.size(); a++) {
 			classes.add((Class) c.get(a));
@@ -117,9 +178,9 @@ public class GPACalculatorActivity extends Activity {
 		ArrayList classList = i.getParcelableArrayListExtra(ARGS_LIST_CLASSES);
 		getClasses(classList);
 		classList.clear();
-		
+
 		scaleListView();
-		scaleAddButton();
+		//scaleAddButton();
 	}
 	/* 
 	 * This function is used to scale the expandable list view according to
@@ -141,12 +202,12 @@ public class GPACalculatorActivity extends Activity {
 		imgBtnCalculate.getLayoutParams().height = (int) (height * 0.10);
 		imgBtnCalculate.setPadding(0, (int)(height*0.025), 0, (int)(height*0.025));
 	}
-	
+
 	private long getLayoutHeight() {
 		DisplayMetrics metrics = new DisplayMetrics();
 		getWindowManager().getDefaultDisplay().getMetrics(metrics);
 		return metrics.heightPixels;
 	}
-	
-	
+
+
 }
