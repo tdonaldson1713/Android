@@ -553,6 +553,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	 */
 	@SuppressLint("NewApi")
 	private void createAddGradeDialog(ArrayList<String> gradeCategories, final boolean is_child) {
+		double currentTotalPercentage = 0; // Used to see how much of the 100% has been accounted for.
+		
 		LayoutInflater inflater = LayoutInflater.from(mClassContext);
 		View add_grade = inflater.inflate(R.layout.dialog_new_grade, null);
 
@@ -639,6 +641,21 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 				}
 			});
 		}
+		
+		/* 
+		 * Before we do anything else, let's get the total amount of percentage 
+		 * that has already been entered. This way we can restrict the values even 
+		 * more than allowing the user to enter more than 100%..for percentages. 
+		 */
+		for (int a = 0; a < grade_percentages.size(); a++) {
+			int index = grade_percentages.get(a).indexOf(" ");
+			String found_percentage = grade_percentages.get(a).substring(index+1);
+			currentTotalPercentage += Integer.valueOf((int) (Double.valueOf(found_percentage) * 100));
+		}
+		DecimalFormat df = new DecimalFormat("0.00");
+		
+		final double percentage_limit = Double.valueOf(df.format(1.0 - (currentTotalPercentage / 100)));
+		Log.d("TEST", "Limit: " + percentage_limit);
 		/*
 		 * Time to work with this stuff!
 		 */
@@ -658,7 +675,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
 				if (isPercentage && !grade_percentage.getText().toString().equals("")) {
 					percentage = Double.valueOf(grade_percentage.getText().toString());
-					if (percentage > 1) {
+					if (percentage >= 1) {
 						percentage /= 100.0;
 					}
 				} else {
@@ -670,9 +687,15 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 				 * percentages that will cause overall percentage to exceed 100%
 				 * as the sum of all the homework categories.
 				 */
-
+				
 				// Time to put this grade into the database.
-				if (earned >= 0.0 && possible > 0.0 && (percentage > 0.0 && percentage < 1.0)) {
+				if (percentage_limit == 0.0) {
+					Toast.makeText(mClassContext, R.string.cannot_enter_percents, Toast.LENGTH_LONG).show();
+				} else if (percentage > percentage_limit) {
+					Toast.makeText(mClassContext, r.getString(R.string.upper_percentage_limit, String.valueOf(percentage_limit * 100)), Toast.LENGTH_LONG).show();
+				} else if (percentage < 0.0) {
+					Toast.makeText(mClassContext, r.getString(R.string.lower_percentage_limit, String.valueOf(percentage_limit * 100)), Toast.LENGTH_LONG).show();
+				} else if (earned >= 0.0 && possible > 0.0 && (percentage > 0.0 && percentage <= percentage_limit)) {
 					Grade newGrade = new Grade();
 
 					newGrade.setEarnedGrade(earned);

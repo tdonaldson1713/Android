@@ -1,0 +1,40 @@
+Begin scanning... programs/binarydigits.cpp
+int
+main
+(
+)
+{
+int
+Identifier	n
+,
+Identifier	count
+;
+Identifier	n
+=
+IntLiteral	10
+;
+Identifier	count
+=
+IntLiteral	1
+;
+while
+(
+Identifier	n
+>=
+IntLiteral	2
+)
+{
+Identifier	count
+=
+Identifier	count
++
+IntLiteral	1
+;
+Identifier	n
+=
+Identifier	n
+/
+IntLiteral	2
+;
+}
+}

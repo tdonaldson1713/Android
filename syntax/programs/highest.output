@@ -1,0 +1,42 @@
+Begin parsing... programs/highest.cpp
+
+Program (abstract syntax): 
+  Declarations: 
+    Declarations = {<n1, int>, <n2, int>, <n3, int>, <h, int>}
+  Block: 
+    Assignment: 
+      Variable: n1
+      IntValue: 21
+    Assignment: 
+      Variable: n2
+      IntValue: 23
+    Assignment: 
+      Variable: n3
+      IntValue: 32
+    Conditional: 
+      Binary: 
+        Operator: >
+        Variable: n1
+        Variable: n2
+      Conditional: 
+        Binary: 
+          Operator: >
+          Variable: n1
+          Variable: n3
+        Assignment: 
+          Variable: h
+          Variable: n1
+        Assignment: 
+          Variable: h
+          Variable: n3
+      Conditional: 
+        Binary: 
+          Operator: >
+          Variable: n2
+          Variable: n3
+        Assignment: 
+          Variable: h
+          Variable: n2
+        Assignment: 
+          Variable: h
+          Variable: n3

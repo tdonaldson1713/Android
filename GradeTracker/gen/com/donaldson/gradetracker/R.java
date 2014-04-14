@@ -274,6 +274,7 @@ public final class R {
         public static final int app_name=0x7f060000;
         public static final int btnAddDesc=0x7f060011;
         public static final int cancel=0x7f06000b;
+        public static final int cannot_enter_percents=0x7f060054;
         public static final int class_list=0x7f06000f;
         public static final int class_name=0x7f060012;
         public static final int class_val=0x7f060003;
@@ -318,6 +319,7 @@ public final class R {
         public static final int logout=0x7f060030;
         public static final int logout_message=0x7f06002f;
         public static final int logout_title=0x7f06002e;
+        public static final int lower_percentage_limit=0x7f060053;
         public static final int new_category=0x7f060039;
         public static final int new_category_name=0x7f06003a;
         public static final int no_categories=0x7f06002d;
@@ -348,6 +350,7 @@ public final class R {
         public static final int teacher=0x7f060006;
         public static final int type_decision=0x7f060009;
         public static final int unscaled=0x7f060049;
+        public static final int upper_percentage_limit=0x7f060052;
         public static final int username=0x7f060001;
         public static final int valid_characters=0x7f06004b;
         public static final int view_all_grades=0x7f06002b;
