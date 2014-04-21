@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
@@ -121,11 +122,11 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		if (this.isTeacher){ // If the teacher is a student.
 			if (students.size() > 0) {
 				LayoutInflater inflater = LayoutInflater.from(mClassContext);
-				View viewer = inflater.inflate(R.layout.list_child_view, parent, false);
+				View viewer = inflater.inflate(R.layout.list_child_view_teacher, parent, false);
 
 				TextView txtStudentName = (TextView) viewer.findViewById(R.id.txt_student_name);
 				final TextView txtStudentGrade = (TextView) viewer.findViewById(R.id.txt_student_grade);
-
+				
 				final Student s = students.get(childPosition);
 
 				if (s.getClassId() == classes.get(groupPosition).getId()) {
@@ -554,7 +555,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	@SuppressLint("NewApi")
 	private void createAddGradeDialog(ArrayList<String> gradeCategories, final boolean is_child) {
 		double currentTotalPercentage = 0; // Used to see how much of the 100% has been accounted for.
-		
+
 		LayoutInflater inflater = LayoutInflater.from(mClassContext);
 		View add_grade = inflater.inflate(R.layout.dialog_new_grade, null);
 
@@ -641,6 +642,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 				}
 			});
 		}
+				
 		
 		/* 
 		 * Before we do anything else, let's get the total amount of percentage 
@@ -655,7 +657,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		DecimalFormat df = new DecimalFormat("0.00");
 		
 		final double percentage_limit = Double.valueOf(df.format(1.0 - (currentTotalPercentage / 100)));
-		Log.d("TEST", "Limit: " + percentage_limit);
+		
 		/*
 		 * Time to work with this stuff!
 		 */
@@ -665,14 +667,27 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 			public void onClick(View v) {
 				double earned = 0.0, possible = 0.0, percentage = 0.0;
 
+				/*
+				 * Since we can't assign a final boolean inside the selection listener above,
+				 * we need to run through again and check if the percentage already exists.
+				 */
+				boolean categoryFound = false;
+				for (int a = 0; a < gradeList.size(); a++) {
+					if (gradeList.get(a).getGradeCategory().equals(grade_type_spinner.getSelectedItem().toString())) {
+						categoryFound = true;
+					}
+				}
+				
 				if (!grade_earned.getText().toString().equals("")) {
 					earned = Double.valueOf(grade_earned.getText().toString());
 				}
 
-				if (!grade_possible.getText().toString().equals("")) {
+				if (grade_possible.getText().toString().equals("")) {
+					Toast.makeText(mClassContext, r.getString(R.string.grade_possible_add_empty), Toast.LENGTH_SHORT).show();
+				} else {
 					possible = Double.valueOf(grade_possible.getText().toString());
 				}
-
+				
 				if (isPercentage && !grade_percentage.getText().toString().equals("")) {
 					percentage = Double.valueOf(grade_percentage.getText().toString());
 					if (percentage >= 1) {
@@ -680,22 +695,16 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 					}
 				} else {
 					percentage = 0.01;
-				}
-
-				/*
-				 * BIG NOTE: We are assuming the user is smart and does not enter
-				 * percentages that will cause overall percentage to exceed 100%
-				 * as the sum of all the homework categories.
-				 */
+				}				
 				
 				// Time to put this grade into the database.
-				if (percentage_limit == 0.0) {
+				if (percentage_limit == 0.0 && !categoryFound) {
 					Toast.makeText(mClassContext, R.string.cannot_enter_percents, Toast.LENGTH_LONG).show();
-				} else if (percentage > percentage_limit) {
+				} else if (percentage > percentage_limit && !categoryFound) {
 					Toast.makeText(mClassContext, r.getString(R.string.upper_percentage_limit, String.valueOf(percentage_limit * 100)), Toast.LENGTH_LONG).show();
-				} else if (percentage < 0.0) {
+				} else if (percentage < 0.0 && !categoryFound) {
 					Toast.makeText(mClassContext, r.getString(R.string.lower_percentage_limit, String.valueOf(percentage_limit * 100)), Toast.LENGTH_LONG).show();
-				} else if (earned >= 0.0 && possible > 0.0 && (percentage > 0.0 && percentage <= percentage_limit)) {
+				} else if (earned >= 0.0 && possible > 0.0 && ((percentage > 0.0 && percentage <= percentage_limit) || categoryFound)) {
 					Grade newGrade = new Grade();
 
 					newGrade.setEarnedGrade(earned);

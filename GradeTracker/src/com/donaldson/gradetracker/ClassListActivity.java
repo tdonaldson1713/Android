@@ -4,6 +4,7 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
@@ -32,10 +33,15 @@ import android.widget.Toast;
 import com.donaldson.gradetracker.DatabaseHelper.ClassCursor;
 import com.donaldson.gradetracker.DatabaseHelper.GradeCursor;
 import com.donaldson.gradetracker.DatabaseHelper.StudentCursor;
+import com.donaldson.gradetracker.util.IabHelper;
+import com.donaldson.gradetracker.util.IabResult;
+import com.donaldson.gradetracker.util.Inventory;
+import com.donaldson.gradetracker.util.Purchase;
 
 
 @TargetApi(Build.VERSION_CODES.HONEYCOMB)
 public class ClassListActivity extends Activity {
+	public static final String TAG = "com.donaldson.gradetracker";
 	public static final String ARG_USER_ID = "user_id";
 	public static final int REQUEST_NEW_CLASS = 0;
 
@@ -54,11 +60,60 @@ public class ClassListActivity extends Activity {
 	private ExpandableListAdapter expListAdapter = null;
 	private ArrayList<Class> gpa_classes = new ArrayList<Class>();
 
+	private IabHelper mPlayStoreHelper;
+	private String base64EncodedPublicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnESwMkz0jdtEK/LBrTRiAf5zIR31ajyBZt1q4Vrl4USLkdh6eUK6oIz3Yeike6sUREIGcEF5qQlt3Dxh4eu3jgSkUMZOqse5hpumjiffpaXcXxCl3pFWeot3tNC2+yINHdPvwoYGo536/sJ55d6LlhbY3ZdUziTRnFCPjqny4+xnQW1MTjBee9tRYneNQJ6wXhAe4bUJt+fGrPvlhGrre/LXVqJWwQc1UesZDptTpTZe+b/OyRKPCbLd2hgvmkPJnZFnymsCAD+2A93bGHSvtwVjgnbQbBU+AAUTRnrKGJ3BiRfRFfBTjeR+B/CE2aLJXncPDNI5dxNC4bCRo1s5yQIDAQAB"; // My key from the developer console for the application.
+	private boolean playStoreHelperComplete = false; 
+	private String SKU_FGC = "fgc_calc";
+	private String SKU_GPA = "gpa_calc";
+	private String fgcPrice;
+	private String gpaPrice;
+	private boolean mFGCUnlocked = false;
+	private boolean mGPAUnlocked = false;
+	private static final int FGC_REQUEST_CODE = 1;
+	private static final int GPA_REQUEST_CODE = 2;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_class_fragment);
 
+		final List<String> skuList = new ArrayList<String>();
+		skuList.add(SKU_FGC);
+		skuList.add(SKU_GPA);
+
+		/*
+		 * Setup the connection to the play store
+		 */
+		mPlayStoreHelper = new IabHelper(this, base64EncodedPublicKey);
+		mPlayStoreHelper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
+
+			@Override
+			public void onIabSetupFinished(IabResult result) {
+				if (result.isSuccess()) {
+
+					mPlayStoreHelper.queryInventoryAsync(true, skuList, new IabHelper.QueryInventoryFinishedListener() {
+						public void onQueryInventoryFinished(IabResult result, Inventory inventory) {
+							if (result.isFailure()) {
+								return;
+							}
+
+							Log.d("TAG", "finished setup");
+
+							// Get whether the item has been purchased
+							mFGCUnlocked = inventory.hasPurchase(SKU_FGC);
+							mGPAUnlocked = inventory.hasPurchase(SKU_GPA);
+							
+
+							/*// Get the prices of the items.
+							fgcPrice = inventory.getSkuDetails(SKU_FGC).getPrice();
+							gpaPrice = inventory.getSkuDetails(SKU_GPA).getPrice();*/
+						}
+					});
+				}
+			}
+		});
+
+		
 		classExpandList = (ExpandableListView) findViewById(R.id.expandableListClass);
 		generalAddButton = (ImageButton) findViewById(R.id.buttonGeneralAdd);
 
@@ -125,7 +180,7 @@ public class ClassListActivity extends Activity {
 
 	private void createQuickActionMenu(View v) {
 		final QuickAction mQuickAction 	= new QuickAction(this);
-
+		
 		//Add action item
 		ActionItem addAction = new ActionItem();
 		addAction.setIcon(getResources().getDrawable(R.drawable.ic_add));
@@ -134,12 +189,21 @@ public class ClassListActivity extends Activity {
 		if (!isTeacher) {
 			//Accept action item
 			ActionItem accAction = new ActionItem();
-			accAction.setIcon(getResources().getDrawable(R.drawable.future));
+
+			if (mFGCUnlocked) {
+				accAction.setIcon(getResources().getDrawable(R.drawable.future));
+			} else {
+				accAction.setIcon(getResources().getDrawable(R.drawable.future_locked));
+			}
 
 			//Upload action item
 			ActionItem upAction = new ActionItem();
-			upAction.setIcon(getResources().getDrawable(R.drawable.gpa));
 
+			if (mGPAUnlocked) {
+				upAction.setIcon(getResources().getDrawable(R.drawable.gpa));
+			} else {
+				upAction.setIcon(getResources().getDrawable(R.drawable.gpa_locked));
+			}
 
 			mQuickAction.addActionItem(accAction);
 			mQuickAction.addActionItem(upAction);
@@ -174,13 +238,21 @@ public class ClassListActivity extends Activity {
 						createDialog(R.layout.dialog_new_student, R.id.insertStudent,
 								R.id.cancelStudent);
 					} else if (!isTeacher) {
-						createFGCDialog();
+						if (mFGCUnlocked) {
+							createFGCDialog();
+						} else {
+							purchaseItem(SKU_FGC, FGC_REQUEST_CODE);
+						}
 					} else {
 						Toast.makeText(getApplicationContext(), "Settings", Toast.LENGTH_SHORT).show();
 					}
 				} else if (pos == 2) { // GPA(student) or settings(teacher)
 					if (!isTeacher) {
-						createGPADialog();
+						if (mGPAUnlocked) {
+							createGPADialog();
+						} else {
+							purchaseItem(SKU_GPA, GPA_REQUEST_CODE);
+						}
 					} else {
 						Toast.makeText(getApplicationContext(), "Settings", Toast.LENGTH_SHORT).show();
 					}
@@ -192,6 +264,37 @@ public class ClassListActivity extends Activity {
 
 		mQuickAction.show(v);
 		mQuickAction.setAnimStyle(QuickAction.ANIM_GROW_FROM_RIGHT);
+	}
+
+	private void purchaseItem(String item, int requestCode) {
+		mPlayStoreHelper.launchPurchaseFlow(this, item, requestCode, new IabHelper.OnIabPurchaseFinishedListener() {
+			@Override
+			public void onIabPurchaseFinished(IabResult result, Purchase info) {
+				// TODO Auto-generated method stub
+				// Don't have to do anything since we're not consuming the item
+				// If we want to consume an item, this is where we would do that at.
+				if (result.isFailure()) {
+					Log.d("TAG", "Error purchase: " + result);
+					mPlayStoreHelper.
+					return;
+				} else if (info.getSku().equals(SKU_FGC)) {
+					mFGCUnlocked = true;
+					return;
+				} else if (info.getSku().equals(SKU_GPA)) {
+					mGPAUnlocked = true;
+					return;
+				}
+			}
+		});
+	}
+
+	@Override
+	public void onDestroy() {
+		if (mPlayStoreHelper != null) {
+			mPlayStoreHelper.dispose();
+		}
+		mPlayStoreHelper = null;
+		super.onDestroy();
 	}
 
 	private void createGPADialog() {
@@ -233,10 +336,16 @@ public class ClassListActivity extends Activity {
 					classes.add(new Class(gpa_classes.get(a)));
 				}
 
-				dialog.dismiss();
-				Intent i = new Intent(getApplicationContext(), GPACalculatorActivity.class);
-				i.putParcelableArrayListExtra(GPACalculatorActivity.ARGS_LIST_CLASSES, classes);
-				startActivity(i);
+				Toast.makeText(getApplicationContext(), String.valueOf(checkedItems.size()), Toast.LENGTH_SHORT).show();
+
+				if (checkedItems.size() > 0) {
+					dialog.dismiss();
+					Intent i = new Intent(getApplicationContext(), GPACalculatorActivity.class);
+					i.putParcelableArrayListExtra(GPACalculatorActivity.ARGS_LIST_CLASSES, classes);
+					startActivity(i);
+				} else {
+					Toast.makeText(getApplicationContext(), R.string.no_selected_gpa, Toast.LENGTH_SHORT).show();
+				}
 			}
 		});
 	}
@@ -277,89 +386,100 @@ public class ClassListActivity extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				dialog.dismiss();
-				double desired = Double.valueOf(editGradeDesired.getText().toString());
-				double possible_desired = Double.valueOf(editGradePossible.getText().toString());
 
-				if (desired > 100.0 || desired <= 0.0) {
-					Toast.makeText(getApplicationContext(), R.string.incorrect_desired_grade, Toast.LENGTH_SHORT).show();
-				} else if (selected_FGC_class == null) {
-					Toast.makeText(getApplicationContext(), R.string.no_selected_class, Toast.LENGTH_SHORT).show();
-				} else if (possible_desired <= 0.0) { 
-					Toast.makeText(getApplicationContext(), R.string.incorrect_possible_grade, Toast.LENGTH_SHORT).show();
-				} else {
-					ArrayList<Grade> grades = new ArrayList<Grade>();
-					grades.addAll(getGradesFromCursor());
+				if (selected_FGC_class != null) {
+					double desired, possible_desired;
 
-					if (selected_FGC_class.getGradingCategory().equals("Percentage")) {
-						ArrayList<FutureGradePercentage> categories = new ArrayList<FutureGradePercentage>();
+					if (!editGradeDesired.getText().toString().equals("") && !editGradePossible.getText().toString().equals("")) {
+						desired = Double.valueOf(editGradeDesired.getText().toString());
+						possible_desired = Double.valueOf(editGradePossible.getText().toString());
 
-						for (int a = 0; a < grades.size(); a++) {
-							if (categories.size() == 0) {
-								categories.add(new FutureGradePercentage(grades.get(a).getGradeCategory(), 0, 0, grades.get(a).getPercentage()));
-							} else {
-								boolean found = false;
-								for (int b = 0; b < categories.size(); b++) {
-									if (categories.get(b).getCategory().equals(grades.get(a).getGradeCategory())) {
-										found = true;
-										break;
+						dialog.dismiss();
+						if (desired > 100.0 || desired <= 0.0) {
+							Toast.makeText(getApplicationContext(), R.string.incorrect_desired_grade, Toast.LENGTH_SHORT).show();
+						} else if (selected_FGC_class == null) {
+							Toast.makeText(getApplicationContext(), R.string.no_selected_class, Toast.LENGTH_SHORT).show();
+						} else if (possible_desired <= 0.0) { 
+							Toast.makeText(getApplicationContext(), R.string.incorrect_possible_grade, Toast.LENGTH_SHORT).show();
+						} else {
+							ArrayList<Grade> grades = new ArrayList<Grade>();
+							grades.addAll(getGradesFromCursor());
+
+							if (selected_FGC_class.getGradingCategory().equals("Percentage")) {
+								ArrayList<FutureGradePercentage> categories = new ArrayList<FutureGradePercentage>();
+
+								for (int a = 0; a < grades.size(); a++) {
+									if (categories.size() == 0) {
+										categories.add(new FutureGradePercentage(grades.get(a).getGradeCategory(), 0, 0, grades.get(a).getPercentage()));
+									} else {
+										boolean found = false;
+										for (int b = 0; b < categories.size(); b++) {
+											if (categories.get(b).getCategory().equals(grades.get(a).getGradeCategory())) {
+												found = true;
+												break;
+											}
+										}
+
+										if (!found) {
+											categories.add(new FutureGradePercentage(grades.get(a).getGradeCategory(), 0, 0, grades.get(a).getPercentage()));
+										}
 									}
 								}
 
-								if (!found) {
-									categories.add(new FutureGradePercentage(grades.get(a).getGradeCategory(), 0, 0, grades.get(a).getPercentage()));
+								double earned = 0, possible = 0, totalPercentage = 0;
+								for (int a = 0; a < categories.size(); a++) {
+									earned = possible = 0;
+
+									for (int b = 0; b < grades.size(); b++) {
+										if (categories.get(a).getCategory().equals(grades.get(b).getGradeCategory())) {
+											earned += grades.get(b).getEarnedGrade();
+											possible += grades.get(b).getPossibleGrade();
+										}
+									}
+
+									categories.get(a).setEarned(earned);
+									categories.get(a).setPossible(possible);
+									totalPercentage += categories.get(a).getPercentage();
 								}
+
+								double inc_total = 0;
+								ArrayList<String> category_grade = new ArrayList<String>();
+								for (int a = 0; a < categories.size(); a++) {
+									for (int b = 0; b < categories.size(); b++) {
+										if (a != b) {
+											inc_total += (categories.get(b).getEarned() / categories.get(b).getPossible()) * categories.get(b).getPercentage();
+										}
+									}
+
+									double new_possible = categories.get(a).getPossible() + possible_desired;
+
+									DecimalFormat df = new DecimalFormat("0.00");
+									double new_total = Double.valueOf(df.format(CalculateGrades.calculate_future_percentage(new_possible, categories.get(a).getEarned(), 
+											categories.get(a).getPercentage(), desired, totalPercentage, inc_total)));
+
+									double new_percentage_total = Double.valueOf(df.format((new_total / possible_desired) * 100));
+									category_grade.add(categories.get(a).getCategory() + "\n\t- " + new_total + " / " + possible_desired + "\n\t- " + new_percentage_total + "%");
+									inc_total = 0;
+								}
+
+								displayFutureGradePercentage(category_grade, desired);
+
+							} else {
+								double earned = 0, possible = 0, neededGrade = 0;
+								for (int a = 0; a < grades.size(); a++) {
+									earned += grades.get(a).getEarnedGrade();
+									possible += grades.get(a).getPossibleGrade();
+								}
+
+								neededGrade = CalculateGrades.calculate_future_points(earned, possible, desired, possible_desired);
+								displayFutureGradePoint(neededGrade, possible_desired, desired);
 							}
 						}
-
-						double earned = 0, possible = 0, totalPercentage = 0;
-						for (int a = 0; a < categories.size(); a++) {
-							earned = possible = 0;
-
-							for (int b = 0; b < grades.size(); b++) {
-								if (categories.get(a).getCategory().equals(grades.get(b).getGradeCategory())) {
-									earned += grades.get(b).getEarnedGrade();
-									possible += grades.get(b).getPossibleGrade();
-								}
-							}
-
-							categories.get(a).setEarned(earned);
-							categories.get(a).setPossible(possible);
-							totalPercentage += categories.get(a).getPercentage();
-						}
-
-						double inc_total = 0;
-						ArrayList<String> category_grade = new ArrayList<String>();
-						for (int a = 0; a < categories.size(); a++) {
-							for (int b = 0; b < categories.size(); b++) {
-								if (a != b) {
-									inc_total += (categories.get(b).getEarned() / categories.get(b).getPossible()) * categories.get(b).getPercentage();
-								}
-							}
-
-							double new_possible = categories.get(a).getPossible() + possible_desired;
-
-							DecimalFormat df = new DecimalFormat("0.00");
-							double new_total = Double.valueOf(df.format(CalculateGrades.calculate_future_percentage(new_possible, categories.get(a).getEarned(), 
-									categories.get(a).getPercentage(), desired, totalPercentage, inc_total)));
-
-							double new_percentage_total = Double.valueOf(df.format((new_total / possible_desired) * 100));
-							category_grade.add(categories.get(a).getCategory() + "\n\t- " + new_total + " / " + possible_desired + "\n\t- " + new_percentage_total + "%");
-							inc_total = 0;
-						}
-
-						displayFutureGradePercentage(category_grade, desired);
-
 					} else {
-						double earned = 0, possible = 0, neededGrade = 0;
-						for (int a = 0; a < grades.size(); a++) {
-							earned += grades.get(a).getEarnedGrade();
-							possible += grades.get(a).getPossibleGrade();
-						}
-
-						neededGrade = CalculateGrades.calculate_future_points(earned, possible, desired, possible_desired);
-						displayFutureGradePoint(neededGrade, possible_desired, desired);
+						Toast.makeText(getApplicationContext(), R.string.empty_fgc_field, Toast.LENGTH_SHORT).show();
 					}
+				} else {
+					Toast.makeText(getApplicationContext(), R.string.no_selected_future, Toast.LENGTH_SHORT).show();
 				}
 			}
 		});
@@ -370,10 +490,10 @@ public class ClassListActivity extends Activity {
 		super.onResume();
 		classes.clear();
 		setUpClasses();
-		
+
 		expListAdapter.insertAllClasses(classes);
 		expListAdapter.notifyDataSetChanged();
-		
+
 		for (int a = 0; a < classExpandList.getAdapter().getCount(); a++) {
 			classExpandList.collapseGroup(a);
 		}

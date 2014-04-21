@@ -8,33 +8,38 @@
     <ExpandableListView
         android:id="@+id/expandableListClass"
         android:layout_width="match_parent"
-        android:layout_height="0dp" 
-        android:layout_marginTop="15dp"
-        android:layout_marginRight="15dp"
+        android:layout_height="0dp"
         android:layout_marginLeft="15dp"
-        android:background="@drawable/border_white" >
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/border_white"
+        android:divider="#FFFFFF"
+        android:dividerHeight="1dp"
+        android:childDivider="#FFFFFF" >
     </ExpandableListView>
 
-    <!--  android:groupIndicator="@android:drawable/arrow_down_float" -->
-    
+    <!-- android:groupIndicator="@android:drawable/arrow_down_float" -->
+
     <ImageButton
         android:id="@+id/buttonGeneralAdd"
-        android:contentDescription="@string/btnAddDesc"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginBottom="15dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
-        android:scaleType="centerInside"
+        android:layout_marginBottom="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:background="@drawable/chalkboard"
-        android:src="@drawable/options_menu"
-         />
-    
-	<!-- android:textSize="20sp"
+        android:contentDescription="@string/btnAddDesc"
+        android:scaleType="centerInside"
+        android:src="@drawable/options_menu" />
+
+    <!--
+    android:textSize="20sp"
 	style="@style/TextColor"
         android:text="@string/addButton"
-        android:visibility="gone" -->
+        android:visibility="gone"
+    -->
+
 </RelativeLayout>

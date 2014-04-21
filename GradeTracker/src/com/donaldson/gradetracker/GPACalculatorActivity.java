@@ -162,8 +162,12 @@ public class GPACalculatorActivity extends Activity {
 
 		TextView txtScaled = (TextView) dialogView.findViewById(R.id.textScaledGPA);
 		TextView txtNotScaled = (TextView) dialogView.findViewById(R.id.textNotScaledGPA);
-
-		txtScaled.setText(String.valueOf(scaled_gpa));
+		
+		if (Double.isNaN(scaled_gpa) || Double.isInfinite(scaled_gpa)) {
+			txtScaled.setText("N/A");
+		} else {
+			txtScaled.setText(String.valueOf(scaled_gpa));
+		}
 		txtNotScaled.setText(String.valueOf(non_scaled_gpa));
 	}
 

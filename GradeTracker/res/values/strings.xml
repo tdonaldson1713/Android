@@ -85,4 +85,9 @@
 	<string name="upper_percentage_limit">Percentage must be less than %s%%</string>
 	<string name="lower_percentage_limit">Percentage must be greater than 0.0%% but less than %s%%</string>
 	<string name="cannot_enter_percents">Sorry, but you have reached 100%. Cannot enter more than 100%</string>
+	<string name="no_selected_gpa">No classes selected. Please select at least 1 class from the list</string>
+	<string name="no_selected_future">Class was not selected. Please select a class from the list</string>
+	<string name="empty_fgc_field">Grade Desired or Possible Grade is empty</string>
+	<string name="grade_earned_add_empty">Grade earned is empty</string>
+	<string name="grade_possible_add_empty">Grade possible is empty</string>
 </resources>

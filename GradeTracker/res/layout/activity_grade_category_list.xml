@@ -20,16 +20,18 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="3dp"
-        android:background="@android:color/black" >
+        android:background="@android:color/white" >
     </TextView>
 
     <ListView
         android:id="@+id/list_view_grades"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="15dp"
+        android:layout_marginBottom="15dp"
         android:layout_marginLeft="15dp"
-        android:layout_marginBottom="15dp" >
+        android:layout_marginRight="15dp"
+        android:divider="#FFFFFF"
+        android:dividerHeight="1dp" >
     </ListView>
 
 </LinearLayout>

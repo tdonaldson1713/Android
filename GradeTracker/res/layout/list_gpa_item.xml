@@ -26,7 +26,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/linearlayouttitle"
         android:layout_marginBottom="7dp"
-        android:layout_marginTop="3dp"
+        android:layout_marginTop="7dp"
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp"
         android:orientation="horizontal" >

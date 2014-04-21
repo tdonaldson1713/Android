@@ -34,9 +34,9 @@
         android:layout_below="@+id/linearlayoutline"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:divider="@android:color/black"
+        android:divider="@android:color/white"
         android:dividerHeight="2dp"
-        android:background="@drawable/border_black" >
+        android:background="@drawable/border_white" >
     </ListView>
 
     <ImageButton
@@ -61,7 +61,7 @@
         android:layout_alignLeft="@+id/listview_classes"
         android:layout_alignRight="@+id/listview_classes"
         android:layout_below="@+id/listview_classes"
-        android:background="@drawable/border_black" >
+        android:background="@drawable/border_white" >
 
         <RadioButton
             android:id="@+id/rbWhole"
