@@ -60,13 +60,12 @@ public class ClassListActivity extends Activity {
 	private ExpandableListAdapter expListAdapter = null;
 	private ArrayList<Class> gpa_classes = new ArrayList<Class>();
 
-	private IabHelper mPlayStoreHelper;
+	
 	private String base64EncodedPublicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnESwMkz0jdtEK/LBrTRiAf5zIR31ajyBZt1q4Vrl4USLkdh6eUK6oIz3Yeike6sUREIGcEF5qQlt3Dxh4eu3jgSkUMZOqse5hpumjiffpaXcXxCl3pFWeot3tNC2+yINHdPvwoYGo536/sJ55d6LlhbY3ZdUziTRnFCPjqny4+xnQW1MTjBee9tRYneNQJ6wXhAe4bUJt+fGrPvlhGrre/LXVqJWwQc1UesZDptTpTZe+b/OyRKPCbLd2hgvmkPJnZFnymsCAD+2A93bGHSvtwVjgnbQbBU+AAUTRnrKGJ3BiRfRFfBTjeR+B/CE2aLJXncPDNI5dxNC4bCRo1s5yQIDAQAB"; // My key from the developer console for the application.
-	private boolean playStoreHelperComplete = false; 
+
+	private IabHelper mPlayStoreHelper;
 	private String SKU_FGC = "fgc_calc";
 	private String SKU_GPA = "gpa_calc";
-	private String fgcPrice;
-	private String gpaPrice;
 	private boolean mFGCUnlocked = false;
 	private boolean mGPAUnlocked = false;
 	private static final int FGC_REQUEST_CODE = 1;
@@ -77,20 +76,32 @@ public class ClassListActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_class_fragment);
 
+		classExpandList = (ExpandableListView) findViewById(R.id.expandableListClass);
+		generalAddButton = (ImageButton) findViewById(R.id.buttonGeneralAdd);
+		
 		final List<String> skuList = new ArrayList<String>();
 		skuList.add(SKU_FGC);
 		skuList.add(SKU_GPA);
-
+		
+		// Create a dialog that is shown until the query of the in-app purchases is finished.
+		// This is needed so the app doesn't crash if the user clicks one of the in-app purchases
+		// before they are completely loaded.
+		LayoutInflater inflater = LayoutInflater.from(this);
+		final View dialogView = inflater.inflate(R.layout.dialog_loading_database, null);
+		final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		
 		/*
 		 * Setup the connection to the play store
 		 */
 		mPlayStoreHelper = new IabHelper(this, base64EncodedPublicKey);
 		mPlayStoreHelper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
-
 			@Override
 			public void onIabSetupFinished(IabResult result) {
+				final AlertDialog load_dialog = builder.create();
+				load_dialog.setView(dialogView, 0, 0, 0, 0);
+				load_dialog.show();
+				
 				if (result.isSuccess()) {
-
 					mPlayStoreHelper.queryInventoryAsync(true, skuList, new IabHelper.QueryInventoryFinishedListener() {
 						public void onQueryInventoryFinished(IabResult result, Inventory inventory) {
 							if (result.isFailure()) {
@@ -102,20 +113,14 @@ public class ClassListActivity extends Activity {
 							// Get whether the item has been purchased
 							mFGCUnlocked = inventory.hasPurchase(SKU_FGC);
 							mGPAUnlocked = inventory.hasPurchase(SKU_GPA);
-							
-
-							/*// Get the prices of the items.
-							fgcPrice = inventory.getSkuDetails(SKU_FGC).getPrice();
-							gpaPrice = inventory.getSkuDetails(SKU_GPA).getPrice();*/
+						
+							// Dismiss the loading dialog.
+							load_dialog.dismiss();
 						}
 					});
 				}
 			}
 		});
-
-		
-		classExpandList = (ExpandableListView) findViewById(R.id.expandableListClass);
-		generalAddButton = (ImageButton) findViewById(R.id.buttonGeneralAdd);
 
 		initialLoad();
 
@@ -275,7 +280,6 @@ public class ClassListActivity extends Activity {
 				// If we want to consume an item, this is where we would do that at.
 				if (result.isFailure()) {
 					Log.d("TAG", "Error purchase: " + result);
-					mPlayStoreHelper.
 					return;
 				} else if (info.getSku().equals(SKU_FGC)) {
 					mFGCUnlocked = true;
@@ -764,6 +768,7 @@ public class ClassListActivity extends Activity {
 				ClassListActivity.super.onBackPressed();
 			}
 		});
+		
 		builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
 
 			@Override

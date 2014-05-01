@@ -24,10 +24,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/textCategory"
-            android:layout_alignParentRight="true"
-            android:paddingRight="5dp"
+            android:layout_toLeftOf="@+id/editGrade"
+            android:paddingRight="15dp"
+            android:paddingLeft="5dp"
             android:text="@string/grade_overall"
             android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <ImageButton
+            android:id="@+id/editGrade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:background="@android:color/transparent"
+            android:paddingRight="10dp"
+            android:src="@drawable/edit_icon" />
+
     </RelativeLayout>
 
     <RelativeLayout
@@ -38,25 +50,38 @@
         android:layout_below="@+id/relativelayouttoprow" >
 
         <TextView
-            android:id="@+id/textOverallPercentage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentRight="true"
-            android:paddingRight="5dp"
-            android:paddingTop="5dp"
-            android:text="@string/grade_overall" 
-            android:textStyle="bold"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
-
-        <TextView
             android:id="@+id/textEarnedByPossible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
+            android:paddingRight="15dp"
             android:paddingLeft="5dp"
             android:paddingTop="5dp"
             android:text="@string/grade_percentage"
             android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <TextView
+            android:id="@+id/textOverallPercentage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toLeftOf="@+id/deleteGrade"
+            android:paddingRight="15dp"
+            android:paddingTop="5dp"
+            android:text="@string/grade_overall"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:textStyle="bold" />
+
+        <ImageButton
+            android:id="@+id/deleteGrade"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@+id/textOverallPercentage"
+            android:layout_alignParentRight="true"
+            android:background="@android:color/transparent"
+            android:paddingRight="5dp"
+            android:src="@drawable/delete_icon" />
+
     </RelativeLayout>
 
 </RelativeLayout>

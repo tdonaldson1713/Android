@@ -90,4 +90,5 @@
 	<string name="empty_fgc_field">Grade Desired or Possible Grade is empty</string>
 	<string name="grade_earned_add_empty">Grade earned is empty</string>
 	<string name="grade_possible_add_empty">Grade possible is empty</string>
+	<string name="home_pressed_logout">You have been logged out of Grade Tracker</string>
 </resources>
