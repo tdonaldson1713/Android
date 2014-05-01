@@ -8,17 +8,17 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
-import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseExpandableListAdapter;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.PopupMenu;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -308,7 +308,7 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 	/*
 	 * This function creates a dialog that allows the user to see their grades for each category.
 	 */
-	private void createGradeOverviewDialog(final boolean isChild, String name, String className) {
+	private void createGradeOverviewDialog(final boolean isChild, final String name, final String className) {
 		grade_percentages.clear();
 		ArrayList<String> categories = list_generator(isChild);
 
@@ -343,7 +343,8 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 		ImageButton btnCancel = (ImageButton) custom_view.findViewById(R.id.btn_cancel_grade);
 		ImageButton btnAddGrade = (ImageButton) custom_view.findViewById(R.id.btn_add_grade);
 		ImageButton btnViewAllGrades = (ImageButton) custom_view.findViewById(R.id.btn_view_all_grades);
-
+		final ImageButton btnSettings = (ImageButton) custom_view.findViewById(R.id.edit_class_img_btn);
+		
 		btnCancel.setOnClickListener(new View.OnClickListener() {
 
 			@Override
@@ -387,10 +388,80 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
 			}
 		});
-
+		
+		btnSettings.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				PopupMenu popup = new PopupMenu(mClassContext, btnSettings);
+				popup.getMenuInflater().inflate(R.menu.popup_menu, popup.getMenu());
+				
+				popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+					
+					@Override
+					public boolean onMenuItemClick(MenuItem item) {
+						//item.getTitle();
+						if (item.getTitle().equals(r.getString(R.string.delete_class))){ 
+							Class c = null;
+							int position = 0;
+							
+							for (int a = 0; a < classes.size(); a++) {
+								if (classes.get(a).getClassName().equals(className)) {
+									c = classes.get(a);
+									position = a;
+									break;
+								}
+							}
+							
+							if (!isTeacher) {
+								deleteClassTeacher(c);
+							} else {
+								Toast.makeText(mClassContext, "test", Toast.LENGTH_SHORT).show();
+								deleteClassStudent(c, 0, position);
+							}
+						} else if (item.getTitle().equals(r.getString(R.string.edit_class))){
+							
+						}
+						
+						return true;
+					}
+				});
+				
+				popup.show();
+			}
+		});
 		dialog.show();
 	}
 
+	private void deleteClassTeacher(Class c) {
+		
+	}
+	
+	private void deleteClassStudent(Class c, int s_id, int pos) {
+		// First we have to delete all the grades for that class.
+		GradeCursor cursor = GradeLab.get(mClassContext).getGrades(c.getId(), s_id);
+		cursor.moveToFirst();
+		
+		Toast.makeText(mClassContext, "testing", Toast.LENGTH_SHORT).show();
+		while (!cursor.isAfterLast()) {
+			GradeCursor delete_grade = GradeLab.get(mClassContext).deleteGrade(cursor.getGradeInfo());
+			Grade g = delete_grade.getGradeInfo();
+			delete_grade.close();
+		}
+		
+		cursor.close();
+		
+		ClassCursor class_cursor = ClassLab.get(mClassContext).deleteClass(c);
+		class_cursor.moveToFirst();
+		Class deleted_class = class_cursor.getClassInfo();
+		class_cursor.close();
+		
+		classes.remove(pos);
+		
+		ExpandableListAdapter.this.notifyDataSetChanged();
+	}
+	
 	private String setNameTitle() {
 		String nameTitle;
 		if (isTeacher) {
