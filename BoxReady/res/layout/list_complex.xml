@@ -1,0 +1,31 @@
+<!-- list_complex.xml -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/silver_button_background"
+    android:orientation="vertical"
+    android:paddingBottom="10dip"
+    android:paddingLeft="15dip"
+    android:paddingTop="10dip" >
+
+    <TextView
+        android:id="@+id/list_complex_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="@color/black" />
+
+    <TextView
+        android:id="@+id/list_complex_wodTime"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:textColor="@color/black" />
+
+    <ImageView
+        android:id="@+id/screenshots"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/app_name" />
+
+</LinearLayout>

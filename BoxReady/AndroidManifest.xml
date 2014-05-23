@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.diligencedojo.boxready"
+    android:versionCode="1"
+    android:versionName="1.0" >
+
+    <uses-sdk
+        android:minSdkVersion="11"
+        android:targetSdkVersion="19" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/c2c_launch9"
+        android:label="@string/app_name" >
+        <activity
+            android:name="com.diligencedojo.boxready.RegistrationActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.diligencedojo.boxready.Splash"
+            android:theme="@style/Theme.Transparent" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" >
+                </action>
+
+                <category android:name="android.intent.category.LAUNCHER" >
+                </category>
+            </intent-filter>
+        </activity>
+        <activity android:name="com.diligencedojo.boxready.RegistrationFragment" >
+        </activity>
+        
+        <activity
+            android:name="AppExplanationActivity"
+            android:label="@string/app_explanation"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="MovementSelectionActivity"
+            android:label="@string/mv_select_action_bar"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.diligencedojo.boxready.WODListActivity"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.diligencedojo.boxready.MovementDescriptionActivity"
+            android:label="@string/mv_descr_action_bar"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name="com.diligencedojo.boxready.DemoVidActivity"
+            android:label="@string/demo_vid_action_bar" >
+        </activity>
+        <activity
+            android:name="CongratulationsActivity"
+            android:label="Congratulations"
+            android:screenOrientation="portrait"  >
+        </activity>
+        <activity
+            android:name="ListSample"
+            android:label="Workout Log"
+            android:screenOrientation="portrait"  >
+        </activity>
+    </application>
+
+</manifest>

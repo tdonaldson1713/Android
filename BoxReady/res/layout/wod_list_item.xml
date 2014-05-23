@@ -1,0 +1,36 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <TextView
+        android:id="@+id/movement_list_item_name"
+        android:name="@string/reps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:paddingLeft="4dp"
+        android:paddingTop="4dp"
+        android:textColor="@color/white" />
+
+    <TextView
+        android:id="@+id/movement_list_item_reps"
+        android:name="@string/movement"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/movement_list_item_name"
+        android:paddingLeft="4dp"
+        android:textColor="@color/white" />
+
+    <Button
+        android:id="@+id/btnViewAbout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="@drawable/silver_button_background"
+        android:text="@string/about_movement"
+        android:textColor="@color/dark_blue" />
+
+</RelativeLayout>

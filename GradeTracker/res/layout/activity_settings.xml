@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/main_background_port" >
+
+    <ImageView
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="9dp"
+        android:layout_marginRight="9dp"
+        android:layout_marginTop="8dp"
+        android:src="@drawable/settings_header" />
+
+    <LinearLayout
+        android:id="@+id/seperator_header"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginLeft="9dp"
+        android:layout_marginRight="9dp"
+        android:layout_below="@+id/header"
+        android:background="@android:color/white"
+        android:orientation="horizontal" >
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/rel_change_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/seperator_header"
+        android:layout_marginLeft="9dp"
+        android:layout_marginRight="9dp" >
+
+        <ImageButton
+            android:id="@+id/change_user_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/change_user_settings" />
+
+        <!-- This is needed for the divider between the different buttons -->
+
+        <LinearLayout
+            android:id="@+id/seperator1"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/change_user_info"
+            android:background="@android:color/white"
+            android:orientation="horizontal" >
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rel_app_updates"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rel_change_info"
+        android:layout_marginLeft="9dp"
+        android:layout_marginRight="9dp" >
+
+        <ImageButton
+            android:id="@+id/view_updates"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/updates" />
+
+        <LinearLayout
+            android:id="@+id/seperator2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/view_updates"
+            android:background="@android:color/white"
+            android:orientation="horizontal" >
+        </LinearLayout>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rel_app_bugs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rel_app_updates"
+        android:layout_marginLeft="9dp"
+        android:layout_marginRight="9dp" >
+
+        <ImageButton
+            android:id="@+id/view_bugs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/bug_list" />
+
+        <LinearLayout
+            android:id="@+id/seperator3"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/view_bugs"
+            android:background="@android:color/white"
+            android:orientation="horizontal" >
+        </LinearLayout>
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:id="@+id/rel_about"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rel_app_bugs"
+        android:layout_marginLeft="9dp"
+        android:layout_marginRight="9dp" >
+
+        <ImageButton
+            android:id="@+id/view_about"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/transparent"
+            android:paddingBottom="2dp"
+            android:paddingTop="2dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/about_button" />
+
+        <LinearLayout
+            android:id="@+id/seperator4"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_below="@+id/view_about"
+            android:background="@android:color/white"
+            android:orientation="horizontal" >
+        </LinearLayout>
+    </RelativeLayout>
+
+</RelativeLayout>

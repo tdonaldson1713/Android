@@ -5,13 +5,34 @@
     android:background="@drawable/main_background_port"
     android:orientation="vertical" >
 
-    <ImageView
+    <LinearLayout
+        android:id="@+id/linearlayouttitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="4dp"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="15dp"
-        android:src="@drawable/grade_buster" />
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_gravity="fill"
+            android:layout_weight="0.06"
+            android:paddingRight="5dp"
+            android:gravity="center"
+            android:src="@drawable/grade_buster" />
+
+        <ImageButton
+            android:id="@+id/btn_grade_settings"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:background="@android:color/transparent"
+            android:src="@android:drawable/ic_menu_preferences" />
+
+    </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"

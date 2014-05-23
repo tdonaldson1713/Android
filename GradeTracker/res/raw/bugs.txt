@@ -1,0 +1,4 @@
+Known Bugs
+ - Deleting Class for Teacher User
+  - Does not reload any students for any class.
+  - Fix: Logout and Log back in.

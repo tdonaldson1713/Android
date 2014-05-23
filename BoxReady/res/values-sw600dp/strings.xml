@@ -1,0 +1,69 @@
+
+<resources>
+
+    <string name="app_name"><b>Couch 2 Crossfit</b></string>
+    <string name="reg_name"><b>    Welcome to Couch 2 Crossfit</b></string>
+    <string name="action_settings">Settings</string>
+    <string name="quote"><i>Don\'t wish for it, work for it!</i></string>
+    <color name="green">#00FF00</color>
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+    <color name="orange">#FFA114</color>
+    <color name="dark_blue">#0F0CE8</color>
+    <color name="med_blue">#007ACC</color>
+    <color name="silver">#C2D6D6</color>
+    <string name= "link"><i>Contact Us At:  \nwww.DiligenceDojo.com</i></string>
+    <string name="registration_title"><i><b>Let\'s Get Started !</b></i></string>
+    <string name="sex"><b>Sex:</b></string>
+    <string name="male_radio_button"><b>Male</b></string>
+    <string name="female_radio_button"><b>Female</b></string>
+    <string name="age"><b>Age:</b></string>
+    <string name="edit_age">-Enter Your Age-</string>
+    <string name="fitness_level"><b>Fitness Level:</b></string>
+    <string name="fitness_level_before_selection">-Select One-</string>
+    <string-array name="fitness_level_spinner_array">
+        <item><b>-Select One-</b></item>
+        <item>-Out of Shape-</item>
+        <item>-Average Shape-</item>
+        <item>-In Shape-</item>
+    </string-array>
+    <string-array name="wod_style_array">
+        <item><b> 3 ROUNDS FOR TIME:  </b></item>
+        <item><b> 21-15-9:  </b></item>
+        <item><b> MAX REPS:  </b></item>
+    </string-array>
+    <string name="fitness_level_prompt">-Estimate Your Fitness Level-</string>
+    <string name="mv_select_action_bar"><b> Select Movements For Workout</b></string>
+    <string name="mv_descr_action_bar"><b>\t\tMovement Description</b></string>
+    <string name="demo_vid_action_bar"><b>\t\t\tVideo Demonstration</b></string>
+    <string name="finalize_reg_info"><b>Finalize Registration Information</b></string>
+    <string name="couch_2_crossfit"><b>Couch2Crossfit</b></string>
+    <color name="red">#FF0000</color>
+    <string name="random_button">-Random Movement-</string>
+    <color name="gray">#999966</color>
+    <color name="blue">#66FFFF</color>
+    <string name="delete_reg">Clear All</string>
+    <string name="movement"><b>Movement:  </b></string>
+    <string name="reps"><b>Reps:  </b></string>
+	<string name="movement_title"><u><b>\t\tW</b></u>orkout <u><b>\tO</b></u>f \tthe <u><b>\tD</b></u>ay</string>
+	<string name="about_movement"><b>About</b></string>
+	<string name="demo_button"><b>View Demonstration Video</b></string>
+	<string name="delete_move"><b>Delete Last Movement</b></string>
+	<string name="finalize_wod"><b>Finalize Workout</b></string>
+	<string name="add_move"><b>\t\tPress the back button to add\n\t\tanother movement to the list</b></string>
+	<string name="wod_scoring"><b>Scoring method: </b></string>
+	<string name="start_wod"><b>Start Your Workout</b></string>
+	<string name="timerVal">00:00:00</string>
+    <string name="pauseButtonLabel"><b>End Workout</b></string>
+    <string name="startButtonLabel"><b>Start Timer</b></string>
+    <string name="congrats">Congratulations! Today\'s workout\n is complete!</string>
+    <string name="exit_app"><b>Exit Application</b></string>
+	<string name="demo_play">Play</string>
+	<string name="demo_stop">Stop</string>
+	<string name="wod_type"><b>3 Rounds For Time</b></string>
+	<string name="splash2">\n\tWhen this screen disappears, you will\n\tbegin building your workout.
+	    \n\n\tTo add a movement to your workout\n\tjust press it\'s button. 
+	    \n\n\tThe type of workout you will be doing\n\twill be specified above the list of \n\tmovements 
+	    you have assembled on \n\tthe <b><u>W</u></b>orkout <b><u>O</u></b>f the <b><u>D</u></b>ay screen.</string>
+	
+</resources>

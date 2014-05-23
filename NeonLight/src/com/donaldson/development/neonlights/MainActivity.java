@@ -32,7 +32,7 @@ public class MainActivity extends Activity {
 		AdView adView = (AdView)this.findViewById(R.id.adView2);
 		AdRequest adRequest = new AdRequest.Builder().build();
 		adView.loadAd(adRequest);
-		
+
 		initialLoad();
 		
 		GridView gridColors = (GridView) findViewById(R.id.gridView);
