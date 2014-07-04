@@ -1478,6 +1478,7 @@ containing a value of this type.
         public static final int dropdown=0x7f070022;
         public static final int edit_query=0x7f070042;
         public static final int edit_share_info=0x7f070051;
+        public static final int edit_web_page=0x7f070052;
         public static final int end=0x7f070025;
         public static final int expand_activities_button=0x7f070038;
         public static final int expanded_menu=0x7f07003e;

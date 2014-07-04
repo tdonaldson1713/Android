@@ -34,6 +34,7 @@ OnClickListener {
 	private Button signOutButton;
 	private Button shareButton;
 	private EditText edit_share_info;
+	private EditText edit_web_page;
 	private String browserShareString;
 	
 	@Override
@@ -49,9 +50,11 @@ OnClickListener {
 		.build();
 
 		edit_share_info = (EditText)  findViewById(R.id.edit_share_info);
+		edit_web_page = (EditText) findViewById(R.id.edit_web_page);
+		
 		browserShareString = getIntent().getStringExtra(Intent.EXTRA_TEXT);
-		edit_share_info.setText("'" + browserShareString + "'"); // Have to surround in quotes to be able to share properly
-		edit_share_info.setEnabled(false); // Disable the edittext so users can't edit the link, might have another edittext to allow the user to type what they want.
+		edit_web_page.setText(browserShareString); // Have to surround in quotes to be able to share properly
+
 		
 		signInButton = (com.google.android.gms.common.SignInButton) findViewById(R.id.sign_in_button);
 		signInButton.setOnClickListener(this);
@@ -82,10 +85,13 @@ OnClickListener {
 		if (requestCode == RC_SIGN_IN) {
 			if (responseCode != RESULT_OK) {
 				mSignInClicked = false;
+			} else {
+				edit_share_info.setText("");
+				edit_web_page.setText("");
 			}
 
 			mIntentInProgress = false;
-			edit_share_info.setText("");
+			
 			if (!mGoogleApiClient.isConnecting()) {
 				mGoogleApiClient.connect();
 			}
@@ -133,12 +139,16 @@ OnClickListener {
 
 		if (view.getId() == R.id.share_button) {		
 
-			if (edit_share_info.getText().toString().equals("")) {
+			if (edit_share_info.getText().toString().equals("") && edit_web_page.getText().toString().equals("")) {
 				Toast.makeText(this, "Please enter text into the text box", Toast.LENGTH_SHORT).show();
 			} else {
+				if (edit_share_info.getText().toString().equals("")) {
+					edit_web_page.setText("'" + edit_web_page.getText().toString() + "'");
+				}
+				
 				Intent shareIntent= new PlusShare.Builder(this)
 				.setType("text/plain")
-				.setText(edit_share_info.getText().toString())
+				.setText(edit_share_info.getText().toString() + "\n\n" + edit_web_page.getText().toString())
 				.getIntent();
 
 				startActivityForResult(shareIntent, 0);
